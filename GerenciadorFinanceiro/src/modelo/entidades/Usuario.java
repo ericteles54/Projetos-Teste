@@ -1,9 +1,11 @@
 package modelo.entidades;
 
+import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
+import conversores.CryptoConverter;
 
 @Entity
 public class Usuario {
@@ -11,8 +13,16 @@ public class Usuario {
 	@Id @GeneratedValue
 	private Long id;
 	
-	@NotNull
+	@Column(unique=true, nullable=false)
+	private String username;
+	
+	@Column(nullable=false)
 	private String nome;
+	
+	@Column(nullable=false)
+	@Convert(converter=CryptoConverter.class)
+	private String password;
+	
 	
 	
 	public Long getId() {
@@ -29,5 +39,21 @@ public class Usuario {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}	
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 }

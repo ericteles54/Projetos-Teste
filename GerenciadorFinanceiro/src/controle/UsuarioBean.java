@@ -1,6 +1,9 @@
 package controle;
 
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
@@ -10,10 +13,12 @@ import modelo.entidades.Usuario;
 import modelo.repositorios.UsuarioRepository;
 
 @ManagedBean
+@SessionScoped
 public class UsuarioBean {
 
 	private Usuario usuario = new Usuario();
-	
+	private List<Usuario> usuarios;
+
 	public void adicionaUsuario() {
 		EntityManager manager = this.geEntityManager();
 		
@@ -21,6 +26,17 @@ public class UsuarioBean {
 		usuarioRepository.adiciona(this.usuario);
 		
 		this.usuario = new Usuario();
+		this.usuarios = null;
+	}
+	
+	public List<Usuario> getUsuarios() {
+	//	if(this.usuarios == null) {
+			EntityManager manager = this.geEntityManager();		
+			UsuarioRepository usuarioRepository = new UsuarioRepository(manager);
+			this.usuarios = usuarioRepository.listaUsuarios();
+	//	}
+		
+		return this.usuarios;
 	}
 
 	private EntityManager geEntityManager() {
@@ -40,6 +56,8 @@ public class UsuarioBean {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
-	
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
 }
