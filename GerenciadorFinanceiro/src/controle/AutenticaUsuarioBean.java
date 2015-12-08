@@ -8,14 +8,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.persistence.Convert;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.jboss.resteasy.util.Base64;
 
-import conversores.CryptoConverter;
 import modelo.entidades.Usuario;
 import modelo.repositorios.UsuarioRepository;
 
