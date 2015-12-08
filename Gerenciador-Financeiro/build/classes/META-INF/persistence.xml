@@ -5,6 +5,11 @@
 
 	<persistence-unit name="gerenciadorFinanceiro_pu" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>br.com.gerenciadorfinanceiro.modelo.entidades.Conta</class>
+		<class>br.com.gerenciadorfinanceiro.modelo.entidades.Despesa</class>		
+		<class>br.com.gerenciadorfinanceiro.modelo.entidades.Receita</class>
+		<class>br.com.gerenciadorfinanceiro.modelo.entidades.Usuario</class>
+		<class>br.com.gerenciadorfinanceiro.modelo.entidades.Teste</class>
 		<properties>
 			<property
 				name="hibernate.dialect"
