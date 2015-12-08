@@ -1,0 +1,10 @@
+hibernate-release-5.0.5.Final
+hibernate-release-5.0.5.Final.zip
+JSF_2.2.9
+libs
+mysql-connector-java-5.1.37
+mysql-connector-java-5.1.37.zip
+jboss-as-7.1.0.Final
+jboss-as-7.1.0.Final.zip
+wildfly-9.0.2.Final
+wildfly-9.0.2.Final.zip
