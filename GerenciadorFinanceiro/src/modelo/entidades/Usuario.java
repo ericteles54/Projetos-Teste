@@ -5,9 +5,18 @@ import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+
 import conversores.CryptoConverter;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name="Usuario.buscaTodos",
+			query="SELECT u FROM Usuario u"),
+	@NamedQuery(name="Usuario.buscaPorUsername",
+			query="SELECT u FROM Usuario u WHERE u.username = :username")
+})
 public class Usuario {
 	
 	@Id @GeneratedValue

@@ -20,7 +20,7 @@ public class UsuarioBean {
 	private List<Usuario> usuarios;
 
 	public void adicionaUsuario() {
-		EntityManager manager = this.geEntityManager();
+		EntityManager manager = this.getEntityManager();
 		
 		UsuarioRepository usuarioRepository = new UsuarioRepository(manager);
 		usuarioRepository.adiciona(this.usuario);
@@ -30,16 +30,16 @@ public class UsuarioBean {
 	}
 	
 	public List<Usuario> getUsuarios() {
-	//	if(this.usuarios == null) {
-			EntityManager manager = this.geEntityManager();		
+		if(this.usuarios == null) {
+			EntityManager manager = this.getEntityManager();	
 			UsuarioRepository usuarioRepository = new UsuarioRepository(manager);
 			this.usuarios = usuarioRepository.listaUsuarios();
-	//	}
+		}
 		
 		return this.usuarios;
 	}
 
-	private EntityManager geEntityManager() {
+	private EntityManager getEntityManager() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		ExternalContext externalContext = facesContext.getExternalContext();
 		
