@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Cadastro de Usuários</title>
+</h:head>
+<h:body>
+	<h:outputStylesheet library="css" name="style.css" />
+	
+	<div id="header">
+		<h:form style="float:left;">
+			<h:link value="Usuarios" outcome="usuarios" />
+			&nbsp;
+			
+			
+		</h:form>
+		
+		<h:graphicImage library="images" name="k19-logo.png" style="float:right;" />
+		<div style="clear:both" />	
+	</div>
+	
+	<div id="conteudo">
+		<ui:insert name="conteudo">Espaço para o conteúdo da tela</ui:insert>
+	</div>
+	
+	<div id="footer" style="text-align:center">
+		<hr />
+		&Copy; 2015 Eric. Todos os direitos reservados.
+	</div>
+</h:body>
+</html>
