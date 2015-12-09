@@ -9,7 +9,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.validation.constraints.Size;
 
-import conversores.CryptoConverter;
+import modelo.conversores.CryptoConverter;
 
 @Entity
 @NamedQueries({

@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import conversores.CryptoConverter;
+import modelo.conversores.CryptoConverter;
 import modelo.entidades.Usuario;
 import modelo.repositorios.UsuarioRepository;
 

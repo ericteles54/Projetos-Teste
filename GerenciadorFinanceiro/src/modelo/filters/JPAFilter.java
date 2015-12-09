@@ -1,4 +1,4 @@
-package filters;
+package modelo.filters;
 
 import java.io.IOException;
 
