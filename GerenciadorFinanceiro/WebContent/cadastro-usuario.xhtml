@@ -11,16 +11,29 @@
 <h:body>
 	<h4>Cadastro de usuários</h4>
 	
+	<h:messages errorStyle="color: red"/>
 	<h:form>
 		<h:panelGrid columns="2">
 			<h:outputLabel value="Nome: " for="campo-nome" />
-			<h:inputText value="#{usuarioBean.usuario.nome}" id="campo-nome"/>
+			<h:inputText
+				value="#{usuarioBean.usuario.nome}"
+				id="campo-nome"
+				required="true"
+				requiredMessage="O campo Nome é obrigatório" />
 			
 			<h:outputLabel value="Username: " for="campo-username" />
-			<h:inputText value="#{usuarioBean.usuario.username}" id="campo-username"/>
+			<h:inputText
+				value="#{usuarioBean.usuario.username}"
+				id="campo-username"
+				required="true"
+				requiredMessage="O campo Username é obrigatório" />
 			
 			<h:outputLabel value="Password: " for="campo-password" />
-			<h:inputSecret value="#{usuarioBean.usuario.password}" id="campo-password" />
+			<h:inputSecret
+				value="#{usuarioBean.usuario.password}"
+				id="campo-password"
+				required="true"
+				requiredMessage="O campo Password é obrigatório" />
 			
 			<h:commandButton action="#{usuarioBean.adicionaUsuario}" value="Cadastrar" />
 		</h:panelGrid>

@@ -10,15 +10,22 @@
 
 <h:body>
 	<h4>Por favor efetue o login para acessar o sistema</h4>
-	<h:messages />
+	<h:messages errorStyle="color: red" />
 	<h:form>
 		<h:panelGrid columns="2">
 			<h:outputLabel value="username: " for="campo-username" />
-			<h:inputText value="#{autenticaUsuarioBean.username}" id="campo-username"/>
+			<h:inputText
+				value="#{autenticaUsuarioBean.username}"
+				id="campo-username"
+				required="true"
+				requiredMessage="O campo username é obrigatório" />
 			
 			<h:outputLabel value="password: " for="campo-password" />
-			<h:inputSecret value="#{autenticaUsuarioBean.password}" id="campo-password"/>
-			
+			<h:inputSecret
+				value="#{autenticaUsuarioBean.password}"
+				id="campo-password"
+				required="true"
+				requiredMessage="O campo password é obrigatório" />			
 			
 			<h:commandButton value="Entrar" action="#{autenticaUsuarioBean.autentica}"/>
 		</h:panelGrid>
