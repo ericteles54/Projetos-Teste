@@ -6,8 +6,8 @@
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/gerenciadorfinanceiro_db"/>
-			<property name="javax.persistence.jdbc.user" value="root"/>
-			<property name="javax.persistence.jdbc.password" value="vtct6!"/>
+			<property name="javax.persistence.jdbc.user" value="sistema"/>
+			<property name="javax.persistence.jdbc.password" value="system123"/>
 			
 			<property name="hibernate.hbm2ddl.auto" value="update"/>
 		</properties>

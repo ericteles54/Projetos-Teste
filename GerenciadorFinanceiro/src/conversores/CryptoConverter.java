@@ -12,8 +12,7 @@ import org.jboss.resteasy.util.Base64;
 public class CryptoConverter implements AttributeConverter<String, String>{
 	
 	private static final String ALGORITHM = "AES/ECB/PKCS5Padding";	
-	//private static final byte[] KEY = "MySuperSecretKey".getBytes();
-	  private static final byte[] KEY = "wjf7dnc*3dh1bcfu".getBytes();
+	private static final byte[] KEY = "wjf7dnc*3dh1bcfu".getBytes();
 	    
 	@Override
 	public String convertToDatabaseColumn(String password) {
