@@ -1,9 +1,8 @@
 package controle;
 
-import java.util.List;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.annotation.ManagedBean;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
@@ -13,21 +12,23 @@ import modelo.entidades.Usuario;
 import modelo.repositorios.UsuarioRepository;
 
 @ManagedBean
-@SessionScoped
-public class UsuarioBean {
+@RequestScoped
+public class CadastraUsuarioBean {
+	
+	private Usuario usuario = new Usuario();	
 
-	private Usuario usuario = new Usuario();
-	private List<Usuario> usuarios;
-
-	public List<Usuario> getUsuarios() {
-		if(this.usuarios == null) {
-			EntityManager manager = this.getEntityManager();	
-			UsuarioRepository usuarioRepository = new UsuarioRepository(manager);
-			this.usuarios = usuarioRepository.listaUsuarios();
-		}
+	public void adicionaUsuario() {
+		EntityManager manager = this.getEntityManager();
 		
-		return this.usuarios;
-	}
+		UsuarioRepository usuarioRepository = new UsuarioRepository(manager);
+		usuarioRepository.adiciona(this.usuario);
+		
+		FacesMessage mensagem = new FacesMessage(
+				"O usuário " + this.usuario.getNome() + " foi adicionado com sucesso");
+		FacesContext.getCurrentInstance().addMessage(null, mensagem);
+		
+		this.usuario = new Usuario();		
+	}	
 
 	private EntityManager getEntityManager() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -45,9 +46,5 @@ public class UsuarioBean {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
-	}
-
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
 	}
 }
