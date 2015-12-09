@@ -1,7 +1,8 @@
 package controle;
 
-import javax.annotation.ManagedBean;
+
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -25,6 +26,7 @@ public class CadastraUsuarioBean {
 		
 		FacesMessage mensagem = new FacesMessage(
 				"O usuário " + this.usuario.getNome() + " foi adicionado com sucesso");
+		mensagem.setSeverity(FacesMessage.SEVERITY_INFO);
 		FacesContext.getCurrentInstance().addMessage(null, mensagem);
 		
 		this.usuario = new Usuario();		

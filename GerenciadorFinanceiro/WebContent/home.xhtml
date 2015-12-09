@@ -11,6 +11,35 @@
 	</ui:define>
 	
 	<ui:define name="conteudo-principal">	
-		<h1>Olá #{sessionScope.username}. Você está logado.</h1>
+		<h:dataTable
+			rendered="#{not empty usuarioBean.usuarios}"
+			value="#{usuarioBean.usuarios}"
+			var="usuario"
+			border="1"
+			cellpadding="3"
+			cellspacing="3">
+			
+			<f:facet name="header">Lista de usuários</f:facet>
+			
+			<h:column>
+				<f:facet name="header">Id</f:facet>
+				#{usuario.id}
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+				#{usuario.nome}
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">username</f:facet>
+				#{usuario.username}
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">password</f:facet>
+				#{usuario.password}
+			</h:column>		
+		</h:dataTable>
 	</ui:define>
 </ui:composition>

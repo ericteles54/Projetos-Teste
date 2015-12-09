@@ -13,58 +13,21 @@
 			<h:panelGrid columns="2">
 				<h:outputLabel value="Nome: " for="campo-nome" />
 				<h:inputText
-					value=""
-					id="campo-nome"
-					required="true"
-					requiredMessage="O campo Nome é obrigatório" />
+					value="#{cadastraUsuarioBean.usuario.nome}"
+					id="campo-nome" />
 				
 				<h:outputLabel value="Username: " for="campo-username" />
 				<h:inputText
-					value="#{usuarioBean.usuario.username}"
-					id="campo-username"
-					required="true"
-					requiredMessage="O campo Username é obrigatório" />
+					value="#{cadastraUsuarioBean.usuario.username}"
+					id="campo-username" />
 				
 				<h:outputLabel value="Password: " for="campo-password" />
 				<h:inputSecret
-					value="#{usuarioBean.usuario.password}"
-					id="campo-password"
-					required="true"
-					requiredMessage="O campo Password é obrigatório" />
+					value="#{cadastraUsuarioBean.usuario.password}"
+					id="campo-password" />
 				
-				<h:commandButton action="#{usuarioBean.adicionaUsuario}" value="Cadastrar" />
+				<h:commandButton action="#{cadastraUsuarioBean.adicionaUsuario}" value="Cadastrar" />
 			</h:panelGrid>
-		</h:form>
-			
-		<h:dataTable
-			rendered="#{not empty usuarioBean.usuarios}"
-			value="#{usuarioBean.usuarios}"
-			var="usuario"
-			border="1"
-			cellpadding="3"
-			cellspacing="3">
-			
-			<f:facet name="header">Lista de usuários</f:facet>
-			
-			<h:column>
-				<f:facet name="header">Id</f:facet>
-				#{usuario.id}
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">Nome</f:facet>
-				#{usuario.nome}
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">username</f:facet>
-				#{usuario.username}
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">password</f:facet>
-				#{usuario.password}
-			</h:column>		
-		</h:dataTable>
+		</h:form>		
 	</ui:define>
 </ui:composition>

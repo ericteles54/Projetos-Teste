@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import modelo.conversores.CryptoConverter;
@@ -23,15 +24,16 @@ public class Usuario {
 	@Id @GeneratedValue
 	private Long id;
 	
-	@Column(unique=true, nullable=false)
+	@Column(unique=true)
+	@NotNull(message="O username não pode ser nulo")
 	@Size(min=6, max=30, message="O campo username precisa ter entre 6 e 30 caracteres")
 	private String username;
 	
-	@Column(nullable=false)
+	@NotNull(message="O nome não pode ser nulo")
 	@Size(min=6, max=30, message="O campo nome precisa ter entre 6 e 30 caracteres")
 	private String nome;
 	
-	@Column(nullable=false)
+	@NotNull(message="O password não pode ser nulo")
 	@Convert(converter=CryptoConverter.class)
 	@Size(min=6, max=30, message="O campo password precisa ter entre 6 e 30 caracteres")
 	private String password;

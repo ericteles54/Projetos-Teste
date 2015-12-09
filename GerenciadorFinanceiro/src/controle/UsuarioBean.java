@@ -20,11 +20,9 @@ public class UsuarioBean {
 	private List<Usuario> usuarios;
 
 	public List<Usuario> getUsuarios() {
-		if(this.usuarios == null) {
-			EntityManager manager = this.getEntityManager();	
-			UsuarioRepository usuarioRepository = new UsuarioRepository(manager);
-			this.usuarios = usuarioRepository.listaUsuarios();
-		}
+		EntityManager manager = this.getEntityManager();	
+		UsuarioRepository usuarioRepository = new UsuarioRepository(manager);
+		this.usuarios = usuarioRepository.listaUsuarios();		
 		
 		return this.usuarios;
 	}
