@@ -29,7 +29,7 @@ CREATE TABLE `Usuario` (
   `username` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_471i15k6vbj1lfsfb19getcdi` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `Usuario` (
 
 LOCK TABLES `Usuario` WRITE;
 /*!40000 ALTER TABLE `Usuario` DISABLE KEYS */;
-INSERT INTO `Usuario` VALUES (2,'Usuario Teste 2','OjIVmOQmnlmMEP7oWgrCJA==','usuario2'),(3,'Usuario Teste 3','G/qHxm4f5MK+Du+1bYcWrw==','usuario3'),(4,'Usuario Teste 4','dI2MdTdh5ZrUWPA8Uq1sag==','usuario4'),(5,'Usuario Teste 5','6YrKkVBKVEXroLV6Y/xc3A==','usuario5');
+INSERT INTO `Usuario` VALUES (2,'Usuario Teste 2','OjIVmOQmnlmMEP7oWgrCJA==','usuario2'),(3,'Usuario Teste 3','G/qHxm4f5MK+Du+1bYcWrw==','usuario3'),(4,'Usuario Teste 4','dI2MdTdh5ZrUWPA8Uq1sag==','usuario4'),(5,'Usuario Teste 5','6YrKkVBKVEXroLV6Y/xc3A==','usuario5'),(6,'Usuario Teste 6','nr8R0HGQJ38DuT/u8CNtkw==','usuario6'),(7,'Usuario Teste 7','AmzwGTEJ2r7URMB0rj6flw==','usuario7'),(8,'Usuario Teste 8','pkDep0i5Zrl1kqPQF0nA9w==','usuario8'),(10,'Usuaario Teste 9','WKO6JG2ukpHq+XZ+0OtslQ==','usuario9');
 /*!40000 ALTER TABLE `Usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-12-09  7:58:19
+-- Dump completed on 2015-12-09 13:02:24
