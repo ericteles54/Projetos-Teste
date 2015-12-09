@@ -1,17 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:ui="http://java.sun.com/jsf/facelets" 
-      xmlns:h="http://java.sun.com/jsf/html" 
-      xmlns:f="http://java.sun.com/jsf/core">
-
-<h:head>
-	<title>Home</title>
-</h:head>
-
-<h:body>
-	<h:outputStylesheet library="css" name="system.css" />
-
-	<h1>Olá #{sessionScope.username}. Você está logado.</h1>
-</h:body> 
-   
-</html>
+<ui:composition template="/WEB-INF/templates/template-principal.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+	<ui:define name="conteudo-principal">
+		<h1>Olá #{sessionScope.username}. Você está logado.</h1>
+	</ui:define>
+</ui:composition>
