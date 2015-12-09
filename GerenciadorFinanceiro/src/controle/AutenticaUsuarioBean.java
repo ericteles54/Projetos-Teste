@@ -8,8 +8,6 @@ import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import modelo.conversores.CryptoConverter;
-import modelo.entidades.Usuario;
 import modelo.repositorios.UsuarioRepository;
 
 @ManagedBean
@@ -22,18 +20,11 @@ public class AutenticaUsuarioBean {
 	
 	public String autentica() {
 				
-		CryptoConverter cryptoConverter = new CryptoConverter();
-		String passwordEncrypt = cryptoConverter.convertToDatabaseColumn(this.password);
-		this.password = passwordEncrypt;
-		
-		// Busca no banco de dados o username informado
-		EntityManager manager = this.geEntityManager();
+		EntityManager manager = this.getEntityManager();
 		UsuarioRepository usuarioRepository = new UsuarioRepository(manager);		
-		Usuario usuario = usuarioRepository.buscaUsuarioPorUsername(this.username);
-				
+		
 		// Verifica usuario e senha informados e retorna home do usuário ou tela de login		
-		if (this.username.equals(usuario.getUsername())
-				&& (this.password.equals(usuario.getPassword()))) {
+		if (usuarioRepository.autenticaUsuario(this.username, this.password)) {
 			
 			ExternalContext externalContext = this.getExternalContext();
 			HttpSession session = (HttpSession) externalContext.getSession(false);
@@ -42,8 +33,7 @@ public class AutenticaUsuarioBean {
 			return "/home";
 			
 		} else {
-			System.out.println("Username: \"" + this.username + "\" ou password informado são inválidos");
-									
+			
 			return "/login";
 		}		
 	}
@@ -55,7 +45,7 @@ public class AutenticaUsuarioBean {
 		return externalContext;
 	}
 	
-	private EntityManager geEntityManager() {
+	private EntityManager getEntityManager() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		ExternalContext externalContext = facesContext.getExternalContext();
 		
