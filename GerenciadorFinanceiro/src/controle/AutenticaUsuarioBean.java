@@ -21,16 +21,15 @@ import modelo.repositorios.UsuarioRepository;
 @SessionScoped
 public class AutenticaUsuarioBean {
 	
-	private String username = new String();
+	private String username = new String();	
 	
-	//@Convert(converter=CryptoConverter.class)
 	private String password = new String();	
 	
 	public String autentica() {
 		
 		// Converte senha informada em senha encryptada
 		final String ALGORITHM = "AES/ECB/PKCS5Padding";
-		final byte[] KEY = "MySuperSecretKey".getBytes();
+		final byte[] KEY = "wjf7dnc*3dh1bcfu".getBytes();
 		
 		// do some Encryption
 		Key key = new SecretKeySpec(KEY, "AES");
@@ -62,8 +61,8 @@ public class AutenticaUsuarioBean {
 			return "/home";
 			
 		} else {
-			System.out.println("Username ou password inválidos");
-						
+			System.out.println("Username: \"" + this.username + "\" ou password informado são inválidos");
+									
 			return "/login";
 		}		
 	}

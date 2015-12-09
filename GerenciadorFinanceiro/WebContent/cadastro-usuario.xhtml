@@ -9,9 +9,11 @@
 </h:head>
 
 <h:body>
-	<h4>Cadastro de usuários</h4>
+	<h:outputStylesheet library="css" name="system.css" />
 	
-	<h:messages errorStyle="color: red"/>
+	<h1>Cadastro de usuários</h1>
+	
+	<h:messages errorStyle="color: red" infoStyle="color: blue" warnStyle="color: yellow"/>
 	<h:form>
 		<h:panelGrid columns="2">
 			<h:outputLabel value="Nome: " for="campo-nome" />
@@ -38,17 +40,37 @@
 			<h:commandButton action="#{usuarioBean.adicionaUsuario}" value="Cadastrar" />
 		</h:panelGrid>
 	</h:form>
+		
+	<h:dataTable
+		rendered="#{not empty usuarioBean.usuarios}"
+		value="#{usuarioBean.usuarios}"
+		var="usuario"
+		border="1"
+		cellpadding="3"
+		cellspacing="3">
+		
+		<f:facet name="header">Lista de usuários</f:facet>
+		
+		<h:column>
+			<f:facet name="header">Id</f:facet>
+			#{usuario.id}
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Nome</f:facet>
+			#{usuario.nome}
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">username</f:facet>
+			#{usuario.username}
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">password</f:facet>
+			#{usuario.password}
+		</h:column>		
+	</h:dataTable>		
 	
-	<h:panelGroup rendered="#{not empty usuarioBean.usuarios}">
-		<h4>Lista de usuários cadastrados</h4>
-		<ul>
-			<ui:repeat var="usuario" value="#{usuarioBean.usuarios}">
-				<li>
-					<h:outputText
-						value="#{usuario.id}: #{usuario.nome} - #{usuario.username} - #{usuario.password}" />
-				</li>
-			</ui:repeat>
-		</ul>
-	</h:panelGroup>
 </h:body>   
 </html>

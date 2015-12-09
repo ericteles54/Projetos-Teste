@@ -2,6 +2,7 @@ package controle;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
@@ -24,6 +25,10 @@ public class UsuarioBean {
 		
 		UsuarioRepository usuarioRepository = new UsuarioRepository(manager);
 		usuarioRepository.adiciona(this.usuario);
+		
+		FacesMessage mensagem = new FacesMessage(
+				"O usuário " + this.usuario.getNome() + " foi adicionado com sucesso");
+		FacesContext.getCurrentInstance().addMessage(null, mensagem);
 		
 		this.usuario = new Usuario();
 		this.usuarios = null;
