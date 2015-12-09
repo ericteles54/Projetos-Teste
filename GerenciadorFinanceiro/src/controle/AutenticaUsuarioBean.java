@@ -29,7 +29,7 @@ public class AutenticaUsuarioBean {
 		// Busca no banco de dados o username informado
 		EntityManager manager = this.geEntityManager();
 		UsuarioRepository usuarioRepository = new UsuarioRepository(manager);		
-		Usuario usuario = usuarioRepository.buscaUsuarioPorUsername(this.username);		
+		Usuario usuario = usuarioRepository.buscaUsuarioPorUsername(this.username);
 				
 		// Verifica usuario e senha informados e retorna home do usuário ou tela de login		
 		if (this.username.equals(usuario.getUsername())
