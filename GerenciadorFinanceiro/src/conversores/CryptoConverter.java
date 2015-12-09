@@ -48,6 +48,5 @@ public class CryptoConverter implements AttributeConverter<String, String>{
 		}
 		*/
 		return dbPasswordData;
-	}
-
+	}	
 }

@@ -3,8 +3,14 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
+		
+	<ui:define name="usuario-logado">
+		<ui:include src="/WEB-INF/partials/info-usuario-logado.xhtml">
+			<ui:param name="username" value="#{sessionScope.username}" />
+		</ui:include>
+	</ui:define>
 	
-	<ui:define name="conteudo-principal">
+	<ui:define name="conteudo-principal">	
 		<h1>Olá #{sessionScope.username}. Você está logado.</h1>
 	</ui:define>
 </ui:composition>

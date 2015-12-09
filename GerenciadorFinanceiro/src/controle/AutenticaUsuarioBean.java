@@ -1,9 +1,5 @@
 package controle;
 
-import java.security.Key;
-
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
@@ -12,8 +8,7 @@ import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.jboss.resteasy.util.Base64;
-
+import conversores.CryptoConverter;
 import modelo.entidades.Usuario;
 import modelo.repositorios.UsuarioRepository;
 
@@ -26,25 +21,11 @@ public class AutenticaUsuarioBean {
 	private String password = new String();	
 	
 	public String autentica() {
-		
-		// Converte senha informada em senha encryptada
-		final String ALGORITHM = "AES/ECB/PKCS5Padding";
-		final byte[] KEY = "wjf7dnc*3dh1bcfu".getBytes();
-		
-		// do some Encryption
-		Key key = new SecretKeySpec(KEY, "AES");
-		
-		String passwordEncrypt = new String();			
-		try {
-			Cipher c = Cipher.getInstance(ALGORITHM);
-			c.init(Cipher.ENCRYPT_MODE, key);
-					
-			passwordEncrypt = Base64.encodeBytes(c.doFinal(this.password.getBytes()));
-			this.password = passwordEncrypt;
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
 				
+		CryptoConverter cryptoConverter = new CryptoConverter();
+		String passwordEncrypt = cryptoConverter.convertToDatabaseColumn(this.password);
+		this.password = passwordEncrypt;
+		
 		// Busca no banco de dados o username informado
 		EntityManager manager = this.geEntityManager();
 		UsuarioRepository usuarioRepository = new UsuarioRepository(manager);		
