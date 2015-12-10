@@ -23,13 +23,15 @@ public class UsuarioAutenticacaoBean {
 		EntityManager manager = this.getEntityManager();
 		UsuarioRepository usuarioRepository = new UsuarioRepository(manager);		
 		
-		// Verifica usuario e senha informados e retorna home do usuário ou tela de login		
-		if (usuarioRepository.autenticaUsuario(this.username, this.password)) {
+		// Verifica usuario e senha informados e retorna home do usuário ou tela de login	
+		Long id = usuarioRepository.autenticaUsuario(this.username, this.password);
+		if (id != null) {
 			
 			ExternalContext externalContext = this.getExternalContext();
 			HttpSession session = (HttpSession) externalContext.getSession(false);
 			session.setAttribute("username", this.username);
-			
+			session.setAttribute("id", id);			
+						
 			return "/home";
 			
 		} else {

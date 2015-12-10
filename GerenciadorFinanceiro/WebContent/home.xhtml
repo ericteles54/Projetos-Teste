@@ -13,10 +13,13 @@
 	
 	<ui:define name="conteudo-principal">
 	
+	
+		<h:outputText value="#{sessionScope.id}" />	
+	
 		<h:panelGrid columns="2">
 			
 			
-			<h:form id="adiciona-conta">				
+			<h:form id="adiciona-conta">	
 				
 				<h:outputLabel value="Banco (nome): " for="campo-nome-banco" />
 				<h:inputText value="#{contaBean.conta.banco}" id="campo-nome-banco"/>

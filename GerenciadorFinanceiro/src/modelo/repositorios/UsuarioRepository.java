@@ -46,7 +46,7 @@ public class UsuarioRepository {
 		return usuario;
 	}
 	
-	public boolean autenticaUsuario(String username, String password) {
+	public Long autenticaUsuario(String username, String password) {
 		
 		CryptoConverterPassword cryptoConverter = new CryptoConverterPassword();
 		String passwordEncrypt = cryptoConverter.convertToDatabaseColumn(password);
@@ -60,12 +60,12 @@ public class UsuarioRepository {
 				&& (password.equals(usuario.getPassword()))) {
 			
 						
-			return true;
+			return usuario.getId();
 			
 		} else {
 			System.out.println("Username: \"" + username + "\" ou password informado são inválidos");
 									
-			return false;
+			return null;
 		}		
 	}
 }

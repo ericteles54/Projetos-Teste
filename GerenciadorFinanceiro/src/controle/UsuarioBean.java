@@ -29,15 +29,12 @@ public class UsuarioBean {
 	}
 	
 	public String registraSaida() {
-		System.out.println("Entrou1");
-		
+				
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		ExternalContext externalContext = facesContext.getExternalContext();
 		
 		HttpSession session = (HttpSession) externalContext.getSession(false);
-		session.removeAttribute("username");
-		
-		System.out.println("Entrou2");
+		session.invalidate();		
 		
 		return "/login";
 	}
