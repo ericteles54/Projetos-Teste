@@ -13,48 +13,26 @@
 	
 	<ui:define name="conteudo-principal">
 	
-		<p:calendar locale="pt_BR" mode="inline">
+		<h:panelGrid columns="2">
+			
+			
+			<h:form id="adiciona-conta">				
+				
+				<h:outputLabel value="Banco (nome): " for="campo-nome-banco" />
+				<h:inputText value="#{contaBean.conta.banco}" id="campo-nome-banco"/>
+				
+				<h:outputLabel value="Conta (nome): " for="campo-nome-conta" />
+				<h:inputText value="#{contaBean.conta.nome}" id="campo-nome-conta"/>
+				
+				<h:outputLabel value="Saldo Inicial: R$" for="campo-saldo-inicial" />
+				<h:inputText value="#{contaBean.conta.saldo}" id="campo-saldo-inicial"/>				
+				
+				<h:commandButton action="#{contaBean.adicionaConta}" value="Adicionar" />
+								
+			</h:form>
+			<h:messages for="adiciona-conta" errorStyle="color: red" infoStyle="color: blue" warnStyle="color: yellow" />
+			
+		</h:panelGrid>
 		
-		</p:calendar>
-	
-	
-		<p:dataTable
-			rendered="#{not empty usuarioBean.usuarios}"
-			value="#{usuarioBean.usuarios}"
-			var="usuario"
-			rowKey="#{usuario.id}"
-			paginator="true"
-			rows="4"
-			selectionMode="single">
-			
-			<f:facet name="header">Lista de usuários</f:facet>
-			
-			<p:column
-				headerText="ID"
-				sortBy="#{usuario.id}">					
-				#{usuario.id}
-			</p:column>
-			
-			<p:column
-				headerText="Nome"
-				sortBy="#{usuario.nome}"
-				filterBy="#{usuario.nome}">			
-				#{usuario.nome}
-			</p:column>
-			
-			<p:column
-				headerText="Username"
-				sortBy="#{usuario.username}"
-				filterBy="#{usuario.username}">				
-				#{usuario.username}
-			</p:column>
-			
-			<p:column
-				headerText="Password"
-				sortBy="#{usuario.password}"
-				filterBy="#{usuario.password}">				
-				#{usuario.password}
-			</p:column>		
-		</p:dataTable>
 	</ui:define>
 </ui:composition>

@@ -15,19 +15,19 @@
 				
 				<h:outputLabel value="username: " for="campo-username" />				
 				<h:inputText
-					value="#{autenticaUsuarioBean.username}"
+					value="#{usuarioAutenticacaoBean.username}"
 					id="campo-username"
 					required="true"
 					requiredMessage="O campo username é obrigatório" />
 				
 				<h:outputLabel value="password: " for="campo-password" />
 				<h:inputSecret
-					value="#{autenticaUsuarioBean.password}"
+					value="#{usuarioAutenticacaoBean.password}"
 					id="campo-password"
 					required="true"
 					requiredMessage="O campo password é obrigatório" />
 				
-				<h:commandButton value="Entrar" action="#{autenticaUsuarioBean.autentica}"/>
+				<h:commandButton value="Entrar" action="#{usuarioAutenticacaoBean.autentica}"/>
 				
 			</h:panelGrid>
 		</h:form>
