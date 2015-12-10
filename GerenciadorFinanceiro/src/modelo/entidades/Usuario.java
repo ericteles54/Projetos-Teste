@@ -10,7 +10,7 @@ import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import modelo.conversores.CryptoConverter;
+import modelo.conversores.CryptoConverterPassword;
 
 @Entity
 @NamedQueries({
@@ -34,7 +34,7 @@ public class Usuario {
 	private String nome;
 	
 	@NotNull(message="O password não pode ser nulo")
-	@Convert(converter=CryptoConverter.class)
+	@Convert(converter=CryptoConverterPassword.class)
 	@Size(min=6, max=30, message="O campo password precisa ter entre 6 e 30 caracteres")
 	private String password;
 	

@@ -17,7 +17,7 @@ import modelo.repositorios.UsuarioRepository;
 
 @ManagedBean
 @RequestScoped
-public class CadastraUsuarioBean {
+public class UsuarioCadastrametnoBean {
 	
 	private Usuario usuario = new Usuario();	
 

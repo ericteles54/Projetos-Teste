@@ -9,7 +9,7 @@ import javax.persistence.Converter;
 import org.jboss.resteasy.util.Base64;
 
 @Converter(autoApply=true)
-public class CryptoConverter implements AttributeConverter<String, String>{
+public class CryptoConverterPassword implements AttributeConverter<String, String>{
 	
 	private static final String ALGORITHM = "AES/ECB/PKCS5Padding";	
 	private static final byte[] KEY = "wjf7dnc*3dh1bcfu".getBytes();

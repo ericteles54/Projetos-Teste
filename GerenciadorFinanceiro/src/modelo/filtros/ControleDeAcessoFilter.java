@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebFilter(servletNames={"Faces Servlet"})
-public class ControleDeAcesso implements Filter {
+public class ControleDeAcessoFilter implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)

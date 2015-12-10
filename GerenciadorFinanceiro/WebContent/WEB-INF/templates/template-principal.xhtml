@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" 
       xmlns:ui="http://java.sun.com/jsf/facelets" 
       xmlns:h="http://java.sun.com/jsf/html" 
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
       
 <h:head>
 	<title>Gerenciador Financeiro</title>
@@ -13,20 +14,24 @@
 
 	<div id="header">
 	
-		<h:form style="float:left;">
-			<h:link value="Login" outcome="login" />
-			&nbsp;
-			<h:link value="Cadastro de Usuário" outcome="cadastro-usuario" />			
-		</h:form>
-		
-		<h:form style="text-align: center;">
+		<h:graphicImage library="images" name="logo.png" style="float:right;" />
+		<h:form id="info-usuario-logado" style="text-align: center;">
 			<ui:insert name="usuario-logado"></ui:insert>
 		</h:form>
-		
-		<h:graphicImage library="images" name="logo.png" style="float:right;" />
+				
 		
 		<div style="clear:both"></div>
-		<hr />
+		
+		
+		<h:form>
+			<p:megaMenu orientation="horizontal" style="margin-top:20px">
+				<p:menuitem value="Login" action="/login" icon="ui-icon-play" />
+				<p:menuitem value="Cadastro de Usuários" action="/cadastro-usuario" icon="ui-icon-person" />
+				<p:menuitem value="Sair" action="#{usuarioBean.registraSaida}" icon="ui-icon-stop" />				
+			</p:megaMenu>
+		</h:form>	
+		
+		
 	</div>
 	
 	<ui:insert name="conteudo-principal">

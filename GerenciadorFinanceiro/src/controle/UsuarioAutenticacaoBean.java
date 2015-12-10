@@ -12,7 +12,7 @@ import modelo.repositorios.UsuarioRepository;
 
 @ManagedBean
 @SessionScoped
-public class AutenticaUsuarioBean {
+public class UsuarioAutenticacaoBean {
 	
 	private String username = new String();	
 	

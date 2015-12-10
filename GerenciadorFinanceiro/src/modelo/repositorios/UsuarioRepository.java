@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import modelo.conversores.CryptoConverter;
+import modelo.conversores.CryptoConverterPassword;
 import modelo.entidades.Usuario;
 
 public class UsuarioRepository {
@@ -48,7 +48,7 @@ public class UsuarioRepository {
 	
 	public boolean autenticaUsuario(String username, String password) {
 		
-		CryptoConverter cryptoConverter = new CryptoConverter();
+		CryptoConverterPassword cryptoConverter = new CryptoConverterPassword();
 		String passwordEncrypt = cryptoConverter.convertToDatabaseColumn(password);
 		password = passwordEncrypt;
 		

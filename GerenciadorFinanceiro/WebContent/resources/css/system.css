@@ -21,3 +21,7 @@ input {
 	background-color: #E6E6FA;
 	border: solid 1px #000000;
 }
+
+#info-usuario-logado {
+	text-align: center;
+}
