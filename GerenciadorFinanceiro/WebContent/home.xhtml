@@ -2,7 +2,8 @@
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 		
 	<ui:define name="usuario-logado">
 		<ui:include src="/WEB-INF/partials/info-usuario-logado.xhtml">
@@ -10,36 +11,51 @@
 		</ui:include>
 	</ui:define>
 	
-	<ui:define name="conteudo-principal">	
-		<h:dataTable
+	<ui:define name="conteudo-principal">
+	
+		<p:calendar locale="pt_BR" mode="inline">
+		
+		</p:calendar>
+	
+	
+		<p:dataTable
 			rendered="#{not empty usuarioBean.usuarios}"
 			value="#{usuarioBean.usuarios}"
 			var="usuario"
-			border="1"
-			cellpadding="3"
-			cellspacing="3">
+			rowKey="#{usuario.id}"
+			paginator="true"
+			rows="4"
+			selectionMode="single">
 			
 			<f:facet name="header">Lista de usuários</f:facet>
 			
-			<h:column>
-				<f:facet name="header">Id</f:facet>
+			<p:column
+				headerText="ID"
+				sortBy="#{usuario.id}"
+				filterBy="#{usuario.id}">					
 				#{usuario.id}
-			</h:column>
+			</p:column>
 			
-			<h:column>
-				<f:facet name="header">Nome</f:facet>
+			<p:column
+				headerText="Nome"
+				sortBy="#{usuario.nome}"
+				filterBy="#{usuario.nome}">			
 				#{usuario.nome}
-			</h:column>
+			</p:column>
 			
-			<h:column>
-				<f:facet name="header">username</f:facet>
+			<p:column
+				headerText="Username"
+				sortBy="#{usuario.username}"
+				filterBy="#{usuario.username}">				
 				#{usuario.username}
-			</h:column>
+			</p:column>
 			
-			<h:column>
-				<f:facet name="header">password</f:facet>
+			<p:column
+				headerText="Password"
+				sortBy="#{usuario.password}"
+				filterBy="#{usuario.password}">				
 				#{usuario.password}
-			</h:column>		
-		</h:dataTable>
+			</p:column>		
+		</p:dataTable>
 	</ui:define>
 </ui:composition>
