@@ -6,10 +6,11 @@
 	
 	<ui:define name="conteudo-principal">	
 		<h1>Cadastro de usuários</h1>
+				
+		<h:form>			
+			<f:event type="postValidate" listener="#{cadastraUsuarioBean.validaUsername}"></f:event>
+			<h:messages errorStyle="color: red" infoStyle="color: blue" warnStyle="color: yellow" />
 		
-		<h:messages errorStyle="color: red" infoStyle="color: blue" warnStyle="color: yellow" />
-		
-		<h:form>
 			<h:panelGrid columns="2">
 				<h:outputLabel value="Nome: " for="campo-nome" />
 				<h:inputText

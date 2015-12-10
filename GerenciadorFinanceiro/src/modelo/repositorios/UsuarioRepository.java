@@ -43,7 +43,7 @@ public class UsuarioRepository {
 			
 		}		
 		
-		return usuario;		
+		return usuario;
 	}
 	
 	public boolean autenticaUsuario(String username, String password) {

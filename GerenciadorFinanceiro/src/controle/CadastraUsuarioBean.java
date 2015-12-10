@@ -4,8 +4,11 @@ package controle;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ComponentSystemEvent;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 
@@ -30,7 +33,31 @@ public class CadastraUsuarioBean {
 		FacesContext.getCurrentInstance().addMessage(null, mensagem);
 		
 		this.usuario = new Usuario();		
-	}	
+	}
+	
+	public void validaUsername(ComponentSystemEvent event) {
+		
+		UIComponent source = event.getComponent();
+		UIInput usernameInput = (UIInput) source.findComponent("campo-username");
+		
+		EntityManager manager = this.getEntityManager();
+		UsuarioRepository usuarioRepository = new UsuarioRepository(manager);
+		
+		String username = (String)usernameInput.getLocalValue();
+		Usuario usuario = usuarioRepository.buscaUsuarioPorUsername(username);
+		
+		
+		if(usuario.getUsername() != null) {
+			FacesMessage mensagem = new FacesMessage(
+					"O username: \"" + username + "\" já existe.");
+			
+			mensagem.setSeverity(FacesMessage.SEVERITY_ERROR);
+			
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage(source.getClientId(), mensagem);
+			context.renderResponse();				
+		}		
+	}
 
 	private EntityManager getEntityManager() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();

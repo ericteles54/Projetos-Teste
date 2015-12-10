@@ -9,9 +9,11 @@
 		<h1>Por favor efetue o login para acessar o sistema</h1>
 		
 		<h:messages errorStyle="color: red" />
+		
 		<h:form>
 			<h:panelGrid columns="2">
-				<h:outputLabel value="username: " for="campo-username" />
+				
+				<h:outputLabel value="username: " for="campo-username" />				
 				<h:inputText
 					value="#{autenticaUsuarioBean.username}"
 					id="campo-username"
@@ -23,9 +25,10 @@
 					value="#{autenticaUsuarioBean.password}"
 					id="campo-password"
 					required="true"
-					requiredMessage="O campo password é obrigatório" />			
+					requiredMessage="O campo password é obrigatório" />
 				
 				<h:commandButton value="Entrar" action="#{autenticaUsuarioBean.autentica}"/>
+				
 			</h:panelGrid>
 		</h:form>
 	</ui:define>

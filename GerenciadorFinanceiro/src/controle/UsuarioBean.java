@@ -8,6 +8,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import modelo.entidades.Usuario;
 import modelo.repositorios.UsuarioRepository;
@@ -25,6 +26,20 @@ public class UsuarioBean {
 		this.usuarios = usuarioRepository.listaUsuarios();		
 		
 		return this.usuarios;
+	}
+	
+	public String registraSaida() {
+		System.out.println("Entrou1");
+		
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = facesContext.getExternalContext();
+		
+		HttpSession session = (HttpSession) externalContext.getSession(false);
+		session.removeAttribute("username");
+		
+		System.out.println("Entrou2");
+		
+		return "/login";
 	}
 
 	private EntityManager getEntityManager() {
