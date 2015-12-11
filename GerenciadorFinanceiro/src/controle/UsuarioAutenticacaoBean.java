@@ -32,7 +32,7 @@ public class UsuarioAutenticacaoBean {
 			session.setAttribute("username", this.username);
 			session.setAttribute("id", id);			
 						
-			return "/home";
+			return "/area-restrita/home";
 			
 		} else {
 			
