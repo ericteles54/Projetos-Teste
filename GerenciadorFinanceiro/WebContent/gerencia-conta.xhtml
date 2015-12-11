@@ -12,21 +12,34 @@
 	</ui:define>
 	
 	<ui:define name="conteudo-principal">	
-	
-		<p:dataTable var="conta" value="#{contaBean.contas}">
-			<p:column headerText="ID: ">
-				<h:outputText value="#{conta.id}" />
-			</p:column>
-			<p:column headerText="Banco: ">
-				<h:outputText value="#{conta.banco}" />
-			</p:column>
-			<p:column headerText="Nome: ">
-				<h:outputText value="#{conta.nome}" />
-			</p:column>
-			<p:column headerText="Saldo: ">
-				<h:outputText value="#{conta.saldo}" />
-			</p:column>			
-		</p:dataTable>
-		
+		<h:form id="contas">
+			<p:growl id="mensagens-contas" showDetail="true" />
+			
+			<p:dataTable
+				id="lista-contas"
+				var="conta"
+				value="#{contaBean.contas}"
+				selectionMode="single"
+				rowKey="#{conta.id}">
+				
+				<f:facet name="header">Contas cadastradas</f:facet>
+				
+				<p:ajax event="rowSelect" update=":contas:mensagens-contas"/>
+				<p:ajax event="rowUnselect" update=":contas:mensagens-contas"/>
+				
+				<p:column headerText="ID: ">
+					<h:outputText value="#{conta.id}" />
+				</p:column>
+				<p:column headerText="Banco: ">
+					<h:outputText value="#{conta.banco}" />
+				</p:column>
+				<p:column headerText="Nome: ">
+					<h:outputText value="#{conta.nome}" />
+				</p:column>
+				<p:column headerText="Saldo: ">
+					<h:outputText value="#{conta.saldo}" />
+				</p:column>			
+			</p:dataTable>
+		</h:form>
 	</ui:define>
 </ui:composition>
