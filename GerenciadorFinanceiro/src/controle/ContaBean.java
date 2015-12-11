@@ -1,5 +1,7 @@
 package controle;
 
+import java.util.List;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -18,7 +20,8 @@ import modelo.repositorios.UsuarioRepository;
 @SessionScoped
 public class ContaBean {
 
-	private Conta conta = new Conta();		
+	private Conta conta = new Conta();
+	private List<Conta> contas;
 
 	public void adicionaConta() {
 		
@@ -41,6 +44,22 @@ public class ContaBean {
 		FacesContext.getCurrentInstance().addMessage(null, mensagem);
 		
 		this.conta = new Conta();
+	}
+	
+	public List<Conta> getContas() {
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = facesContext.getExternalContext();
+		
+		HttpSession session = (HttpSession) externalContext.getSession(true);
+		Long usuario_id = (Long) session.getAttribute("id");		
+		
+		EntityManager manager = this.getEntityManager();
+		ContaRepository contaRepository = new ContaRepository(manager);
+		
+		//this.contas = contaRepository.listaTodas(usuario_id);
+		this.contas = contaRepository.listaTodas(usuario_id);
+		
+		return this.contas;
 	}
 	
 	private ExternalContext getExternalContext() {
@@ -66,5 +85,9 @@ public class ContaBean {
 
 	public void setConta(Conta conta) {
 		this.conta = conta;
+	}	
+
+	public void setContas(List<Conta> contas) {
+		this.contas = contas;
 	}	
 }

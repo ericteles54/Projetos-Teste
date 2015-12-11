@@ -4,9 +4,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name="Conta.buscaPorUsuario", query="SELECT c FROM Conta c WHERE c.usuario.id = :usuario_id")
+})
 public class Conta {
 
 	@Id @GeneratedValue

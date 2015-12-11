@@ -23,7 +23,7 @@ public class UsuarioBean {
 	public List<Usuario> getUsuarios() {
 		EntityManager manager = this.getEntityManager();	
 		UsuarioRepository usuarioRepository = new UsuarioRepository(manager);
-		this.usuarios = usuarioRepository.listaUsuarios();		
+		this.usuarios = usuarioRepository.listaUsuarios();
 		
 		return this.usuarios;
 	}

@@ -1,0 +1,28 @@
+<ui:composition template="/WEB-INF/templates/template-usuario-logado.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<ui:define name="conteudo-principal">
+	
+		<h1>Cadastro de contas</h1>
+		
+		<h:form>
+			<h:messages errorStyle="color: red" infoStyle="color: blue" warnStyle="color: yellow" />
+		
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Banco (nome): " for="campo-nome-banco" />
+				<h:inputText value="#{contaBean.conta.banco}" id="campo-nome-banco"/>
+				
+				<h:outputLabel value="Conta (nome): " for="campo-nome-conta" />
+				<h:inputText value="#{contaBean.conta.nome}" id="campo-nome-conta"/>
+				
+				<h:outputLabel value="Saldo Inicial: R$" for="campo-saldo-inicial" />
+				<h:inputText value="#{contaBean.conta.saldo}" id="campo-saldo-inicial"/>				
+				
+				<h:commandButton action="#{contaBean.adicionaConta}" value="Adicionar" />
+			</h:panelGrid>
+		</h:form>		
+	</ui:define>
+</ui:composition>

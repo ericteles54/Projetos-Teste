@@ -15,17 +15,31 @@
 	<div id="header">
 	
 		<h:graphicImage library="images" name="logo.png" style="float:right;" />
+		<h:form id="info-usuario-logado" style="text-align: center;">
+			<ui:insert name="usuario-logado"></ui:insert>
+		</h:form>
+				
 		
-		<div style="clear:both"></div>		
+		<div style="clear:both"></div>
+		
 		
 		<h:form>
-			<p:megaMenu orientation="horizontal" style="margin-top:20px">
-				<p:menuitem value="Login" action="/login" icon="ui-icon-play" />
-				<p:menuitem value="Cadastro de Usuários" action="/cadastro-usuario" icon="ui-icon-document" />
+			<p:megaMenu orientation="horizontal" style="margin-top:20px">				
+				 <p:menuitem value="Home" action="/home" icon="ui-icon-document" />
+				 <p:submenu label="Sistema" icon="ui-icon-document">
+				 	<p:column>
+				 		<p:submenu label="Contas">				 			
+				 			<p:menuitem value="Cadastro de Contas" action="/cadastro-conta" icon="ui-icon-document" />
+				 			<p:menuitem value="Ver Contas" action="/gerencia-conta" icon="ui-icon-document" />
+				 		</p:submenu>
+				 	</p:column>
+				 </p:submenu>				
+				<p:menuitem value="Sair" action="#{usuarioBean.registraSaida}" icon="ui-icon-stop" />				
 			</p:megaMenu>
-		</h:form>		
+		</h:form>	
+		
 		<hr />
-	</div>
+	</div>	
 	
 	<ui:insert name="conteudo-principal">
 		Em construção.

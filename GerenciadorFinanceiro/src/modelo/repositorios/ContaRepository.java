@@ -1,6 +1,10 @@
 package modelo.repositorios;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+
 import modelo.entidades.Conta;
 
 public class ContaRepository {
@@ -13,5 +17,19 @@ public class ContaRepository {
 	
 	public void adiciona(Conta conta) {
 		this.manager.persist(conta);
-	}	
+	}
+	
+	public List<Conta> listaTodas(Long usuario_id) {
+		TypedQuery<Conta> query = this.manager.createNamedQuery("Conta.buscaPorUsuario", Conta.class);
+		query.setParameter("usuario_id", usuario_id);
+		
+		List<Conta> contas;
+		try {
+			contas = query.getResultList();
+		} catch (Exception e) {
+			contas = null;
+		}
+		
+		return contas;
+	}
 }

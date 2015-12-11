@@ -13,10 +13,20 @@
 	
 	<ui:define name="conteudo-principal">	
 	
-		<h:outputText value="Id do usuário: #{sessionScope.id}" />
+		<p:dataTable var="conta" value="#{contaBean.contas}">
+			<p:column headerText="ID: ">
+				<h:outputText value="#{conta.id}" />
+			</p:column>
+			<p:column headerText="Banco: ">
+				<h:outputText value="#{conta.banco}" />
+			</p:column>
+			<p:column headerText="Nome: ">
+				<h:outputText value="#{conta.nome}" />
+			</p:column>
+			<p:column headerText="Saldo: ">
+				<h:outputText value="#{conta.saldo}" />
+			</p:column>			
+		</p:dataTable>
 		
-		<h:form>
-			<h:commandLink action="/cadastro-conta" value="Cadastrar Conta" />	
-		</h:form>
 	</ui:define>
 </ui:composition>
