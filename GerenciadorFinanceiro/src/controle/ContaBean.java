@@ -66,9 +66,11 @@ public class ContaBean {
 	}
 	
 	 public void onRowSelect(SelectEvent event) {
-		 FacesMessage mensagem = new FacesMessage(
-	        		"Conta Selecionada" + ((Conta) event.getObject()).getId());
+		 	FacesMessage mensagem = new FacesMessage(
+	        		"Conta Selecionada: " + ((Conta) event.getObject()).getId());
 	        FacesContext.getCurrentInstance().addMessage(null, mensagem);
+	        
+	       
 	    }
 	 
 	    public void onRowUnselect(UnselectEvent event) {

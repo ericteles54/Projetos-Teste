@@ -24,8 +24,8 @@
 				
 				<f:facet name="header">Contas cadastradas</f:facet>
 				
-				<p:ajax event="rowSelect" update=":contas:mensagens-contas"/>
-				<p:ajax event="rowUnselect" update=":contas:mensagens-contas"/>
+				<p:ajax event="rowSelect" listener="#{contaBean.onRowSelect}" update=":contas:mensagens-contas"/>
+				<p:ajax event="rowUnselect" listener="#{contaBean.onRowUnselect}" update=":contas:mensagens-contas"/>
 				
 				<p:column headerText="ID: ">
 					<h:outputText value="#{conta.id}" />
