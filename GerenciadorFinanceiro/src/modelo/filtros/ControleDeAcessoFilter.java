@@ -26,7 +26,7 @@ public class ControleDeAcessoFilter implements Filter {
 		if(session.getAttribute("username") != null
 				|| req.getRequestURI().endsWith("login.xhtml")
 				|| req.getRequestURI().endsWith("cadastro-usuario.xhtml")
-				|| req.getRequestURI().endsWith("login-new.xhtml")) {
+				) {
 			
 			chain.doFilter(request, response);
 			

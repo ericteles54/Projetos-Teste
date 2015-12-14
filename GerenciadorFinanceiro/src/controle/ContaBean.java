@@ -59,19 +59,27 @@ public class ContaBean {
 		EntityManager manager = this.getEntityManager();
 		ContaRepository contaRepository = new ContaRepository(manager);
 		
-		//this.contas = contaRepository.listaTodas(usuario_id);
 		this.contas = contaRepository.listaTodas(usuario_id);
 		
 		return this.contas;
 	}
 	
 	 public void onRowSelect(SelectEvent event) {
-		 	FacesMessage mensagem = new FacesMessage(
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = facesContext.getExternalContext();
+		
+		
+		FacesMessage mensagem = new FacesMessage(
 	        		"Conta Selecionada: " + ((Conta) event.getObject()).getId());
-	        FacesContext.getCurrentInstance().addMessage(null, mensagem);
-	        
-	       
-	    }
+		FacesContext.getCurrentInstance().addMessage(null, mensagem);
+		
+		try {
+			externalContext.redirect("area-restrita/home.xhtml");
+		} catch (Exception e) {
+			
+		}
+		
+	 }
 	 
 	    public void onRowUnselect(UnselectEvent event) {
 	    	FacesMessage mensagem = new FacesMessage(
