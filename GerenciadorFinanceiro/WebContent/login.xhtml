@@ -2,34 +2,44 @@
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 	
-	<ui:define name="conteudo-principal">
-		
-		<h1>Por favor efetue o login para acessar o sistema</h1>
-		
-		<h:messages errorStyle="color: red" />
-		
-		<h:form>
-			<h:panelGrid columns="2">
+	
+	<ui:define name="corpo-principal">
+		<h:form id="login-form">
+			<p:panel id="login-panel" header="Login">
 				
-				<h:outputLabel value="username: " for="campo-username" />				
-				<h:inputText
-					value="#{usuarioAutenticacaoBean.username}"
-					id="campo-username"
-					required="true"
-					requiredMessage="O campo username é obrigatório" />
+				<p:messages id="login-msg" />
+				<h:panelGrid columns="2" cellpadding="5">
+					<p:outputLabel value="username: " for="campo-username" />
+					<p:inputText
+						value="#{usuarioAutenticacaoBean.username}"
+						id="campo-username"
+						required="true"
+						requiredMessage="O campo username é obrigatório"
+						label="username">
+						<f:validateLength minimum="6" />						
+					</p:inputText>
+					
+					<p:outputLabel value="password: " for="campo-password" />
+					<p:password
+						value="#{usuarioAutenticacaoBean.password}"
+						id="campo-password"
+						required="true"
+						requiredMessage="O campo password é obrigatório"
+						label="password">
+						<f:validateLength minimum="6" />						
+					</p:password>
+				</h:panelGrid>
 				
-				<h:outputLabel value="password: " for="campo-password" />
-				<h:inputSecret
-					value="#{usuarioAutenticacaoBean.password}"
-					id="campo-password"
-					required="true"
-					requiredMessage="O campo password é obrigatório" />
-				
-				<h:commandButton value="Entrar" action="#{usuarioAutenticacaoBean.autentica}"/>
-				
-			</h:panelGrid>
-		</h:form>
+				<p:commandButton
+					value="Login"
+					update="login-panel"
+					action="#{usuarioAutenticacaoBean.autentica}"
+					icon="ui-icon-check" />				
+			</p:panel>
+		</h:form>	
 	</ui:define>
 </ui:composition>
+	

@@ -1,4 +1,4 @@
-<ui:composition template="/WEB-INF/templates/template-usuario-logado.xhtml"
+<ui:composition template="/WEB-INF/templates/template-principal.xhtml"
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -11,7 +11,12 @@
 		</ui:include>
 	</ui:define>
 	
-	<ui:define name="conteudo-principal">	
+	<ui:define name="menu-principal">
+		<ui:include src="/WEB-INF/partials/menu-principal.xhtml">
+		</ui:include>	
+	</ui:define>
+	
+	<ui:define name="corpo-principal">	
 		<h:form id="contas">
 			<p:growl id="mensagens-contas" showDetail="true" />
 			

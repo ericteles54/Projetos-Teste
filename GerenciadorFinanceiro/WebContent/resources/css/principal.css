@@ -1,0 +1,30 @@
+.cabecalho {
+	position:absolute;
+	top: 1%;
+	left: 1%;
+	right: 1%;
+}
+
+.menu-principal {
+	position: absolute;
+	clear:both;
+	top: 10%;
+	left: 1%;
+	right: 1%;
+}
+
+.corpo-principal {
+	position: absolute;
+	clear:both;
+	top: 20%;
+	left: 1%;
+	right: 1%;
+}
+
+.rodape {
+	position:absolute;
+	clear:both;
+	top: 90%;
+	left: 1%;
+	right: 1%;	
+}

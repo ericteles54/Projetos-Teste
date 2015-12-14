@@ -1,0 +1,35 @@
+<ui:composition template="/WEB-INF/templates/template-principal.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+	<ui:define name="conteudo-principal">
+		
+		<h1>Por favor efetue o login para acessar o sistema</h1>
+		
+		<h:messages errorStyle="color: red" />
+		
+		<h:form>
+			<h:panelGrid columns="2">
+				
+				<h:outputLabel value="username: " for="campo-username" />				
+				<h:inputText
+					value="#{usuarioAutenticacaoBean.username}"
+					id="campo-username"
+					required="true"
+					requiredMessage="O campo username é obrigatório" />
+				
+				<h:outputLabel value="password: " for="campo-password" />
+				<h:inputSecret
+					value="#{usuarioAutenticacaoBean.password}"
+					id="campo-password"
+					required="true"
+					requiredMessage="O campo password é obrigatório" />
+				
+				<h:commandButton value="Entrar" action="#{usuarioAutenticacaoBean.autentica}"/>
+				
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

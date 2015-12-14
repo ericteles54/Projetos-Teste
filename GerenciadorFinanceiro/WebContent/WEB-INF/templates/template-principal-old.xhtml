@@ -10,20 +10,30 @@
 </h:head>
 
 <h:body>
+	<h:outputStylesheet library="css" name="system.css" />
+
 	<div id="header">
-		<p:graphicImage library="images" name="logo.png"></p:graphicImage>
+	
+		<h:graphicImage library="images" name="logo.png" style="float:right;" />
+		
+		<div style="clear:both"></div>		
+		
+		<h:form>
+			<p:megaMenu orientation="horizontal" style="margin-top:20px">
+				<p:menuitem value="Login" action="/login" icon="ui-icon-play" />
+				<p:menuitem value="Cadastro de Usuários" action="/cadastro-usuario" icon="ui-icon-document" />
+			</p:megaMenu>
+		</h:form>		
+		<hr />
 	</div>
 	
-	<div id="corpo-principal">
-		<ui:insert name="conteudo-principal">
-			Em construção.
-		</ui:insert>
-	</div>
+	<ui:insert name="conteudo-principal">
+		Em construção.
+	</ui:insert>
 	
 	<div id="footer" style="text-align: center">
 		<hr />
 		&copy; 2015 Eric. Todos os direitos reservados :-P
 	</div>
-	
-</h:body>
+</h:body>   
 </html>
