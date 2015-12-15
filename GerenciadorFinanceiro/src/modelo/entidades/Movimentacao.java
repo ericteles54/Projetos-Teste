@@ -8,9 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 
 
+@NamedQueries({
+	@NamedQuery(name="Movimentacao.buscaTodasPorConta", query="SELECT m FROM Movimentacao m WHERE m.conta.id = :conta_id")
+})
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @Entity
 public abstract class Movimentacao {

@@ -2,7 +2,8 @@
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="usuario-logado">
 		<h:outputText value="Olá #{usuarioBean.usuarioAutenticado.nome}. Você está logado." style="color: blue" />
@@ -37,6 +38,60 @@
 				
 				<h:commandButton action="#{movimentacaoBean.adicionaReceita}" value="Adicionar" />
 			</h:panelGrid>
-		</h:form>		
+		</h:form>
+		
+		
+		<h:form id="formulario-gerencia-movimentacoes">
+			<p:growl id="msgs" showDetail="true" />
+			<p:dataTable
+				id="movimentacoes"
+				var="movimentacao"
+				value="#{movimentacaoBean.buscaTodasPorConta(movimentacaoBean.contaSelecionada)}"
+				editable="true"
+				style="margin-botton: 20px">
+				
+				<f:facet name="header">Gerenciamento de Movimentações</f:facet>
+				
+				<p:ajax event="rowEditInit" listener="#{movimentacaoBean.iniciaEdicaoColuna}" update=":formulario-gerencia-movimentacoes:msgs" />
+				<p:ajax event="rowEdit" listener="#{movimentacaoBean.posEdicaoColuna}" update=":formulario-gerencia-movimentacoes:msgs" />
+				<p:ajax event="rowEditCancel" listener="#{movimentacaoBean.cancelamentoEdicaoColuna}" update=":formulario-gerencia-movimentacoes:msgs" />
+				
+				<p:column headerText="Data" style="width:100px">
+					<h:outputText value="#{movimentacao.data}">
+						<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+					</h:outputText>
+				</p:column>				
+				<p:column headerText="Descrição">
+					<p:cellEditor>
+						<f:facet name="output"><h:outputText value="#{movimentacao.descricao}" /></f:facet>
+						<f:facet name="input"><p:inputText value="#{movimentacao.descricao}" style="width:100%" /></f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Valor">
+					<p:cellEditor>
+						<f:facet name="output"><h:outputText value="#{movimentacao.valor}" /></f:facet>
+						<f:facet name="input"><p:inputText value="#{movimentacao.valor}" style="width:100%" /></f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Status">
+					<p:cellEditor>
+						<f:facet name="output"><h:outputText value="#{movimentacao.status}" /></f:facet>
+						<f:facet name="input"><p:inputText value="#{movimentacao.status}" /></f:facet>
+					</p:cellEditor>
+				</p:column>				
+				<p:column headerText="Editar" style="width:45px">
+					<p:rowEditor />			
+				</p:column>
+				<p:column headerText="Remover" style="width:70px">
+					<p:commandButton
+						icon="ui-icon-trash"
+						title="Remove Movimentação"
+						action="#{movimentacaoBean.removeMovimentacao(movimentacao)}"
+						ajax="false">
+					</p:commandButton>
+				</p:column>				
+			</p:dataTable>
+		</h:form>
+		
 	</ui:define>
 </ui:composition>
