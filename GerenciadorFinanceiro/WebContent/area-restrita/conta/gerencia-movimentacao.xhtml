@@ -1,0 +1,53 @@
+<ui:composition template="/WEB-INF/templates/template-principal.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+		
+	<ui:define name="usuario-logado">
+		<ui:include src="/WEB-INF/partials/info-usuario-logado.xhtml">
+			<ui:param name="username" value="#{sessionScope.username}" />
+		</ui:include>
+	</ui:define>
+	
+	<ui:define name="menu-principal">
+		<ui:include src="/WEB-INF/partials/menu-principal.xhtml">
+		</ui:include>	
+	</ui:define>
+	
+	<ui:define name="corpo-principal">
+		<h:form id="movimentacoes">
+			<p:growl id="mensagens-movimentacoes" showDetail="true" />
+			
+			<p:dataTable
+				id="lista-movimentacoes"
+				var="movimentacao"
+				value="#{movimentacaoBean.receitas}"
+				selectionMode="single"
+				rowKey="#{movimentacao.id}">
+				
+				<f:facet name="header">Movimentacoes cadastradas</f:facet>
+								
+				<p:column headerText="ID: ">
+					<h:outputText value="#{movimentacao.id}" />
+				</p:column>
+				<p:column headerText="Conta: ">
+					<h:outputText value="#{movimentacao.conta.banco} - #{movimentacao.conta.nome}" />
+				</p:column>
+				<p:column headerText="Nome: ">
+					<h:outputText value="#{movimentacao.nome}" />
+				</p:column>
+				<p:column headerText="Data: ">
+					<h:outputText value="#{movimentacao.data}" />
+				</p:column>
+				<p:column headerText="Valor: ">
+					<h:outputText value="#{movimentacao.valor}" />
+				</p:column>
+				<p:column headerText="Status: ">
+					<h:outputText value="#{movimentacao.status}" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>

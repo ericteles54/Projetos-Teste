@@ -33,7 +33,7 @@ public class ControleDeAcessoFilter implements Filter {
 		} else {
 			
 			HttpServletResponse res = (HttpServletResponse) response;
-			res.sendRedirect("login.xhtml");
+			res.sendRedirect("/GerenciadorFinanceiro/login.xhtml");
 		}
 		
 	}

@@ -27,6 +27,7 @@ public class Conta {
 	private Double saldo;
 	
 	@ManyToOne
+	@NotNull(message="O Usuario não pode ser nulo")
 	private Usuario usuario;
 
 	

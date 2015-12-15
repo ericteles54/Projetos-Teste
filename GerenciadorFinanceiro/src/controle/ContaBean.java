@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.primefaces.event.SelectEvent;
-import org.primefaces.event.UnselectEvent;
-
 import modelo.entidades.Conta;
 import modelo.entidades.Usuario;
 import modelo.repositorios.ContaRepository;
@@ -64,28 +62,10 @@ public class ContaBean {
 		return this.contas;
 	}
 	
-	 public void onRowSelect(SelectEvent event) {
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		ExternalContext externalContext = facesContext.getExternalContext();
+	public String verDetalhesConta() {
+		return "/area-restrita/conta/gerencia-movimentacao";
 		
-		
-		FacesMessage mensagem = new FacesMessage(
-	        		"Conta Selecionada: " + ((Conta) event.getObject()).getId());
-		FacesContext.getCurrentInstance().addMessage(null, mensagem);
-		
-		try {
-			externalContext.redirect("area-restrita/home.xhtml");
-		} catch (Exception e) {
-			
-		}
-		
-	 }
-	 
-	    public void onRowUnselect(UnselectEvent event) {
-	    	FacesMessage mensagem = new FacesMessage(
-	        		"Conta liberada" + ((Conta) event.getObject()).getId());
-	        FacesContext.getCurrentInstance().addMessage(null, mensagem);
-	    }
+	}
 	
 	private ExternalContext getExternalContext() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
