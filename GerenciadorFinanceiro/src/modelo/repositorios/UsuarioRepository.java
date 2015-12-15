@@ -19,6 +19,10 @@ public class UsuarioRepository {
 		this.manager.persist(usuario);
 	}
 	
+	public void removeUsuario(Usuario usuario) {
+		this.manager.remove(usuario);
+	}
+	
 	public List<Usuario> listaUsuarios() {
 		TypedQuery<Usuario> query = this.manager.createNamedQuery("Usuario.buscaTodos", Usuario.class);
 		

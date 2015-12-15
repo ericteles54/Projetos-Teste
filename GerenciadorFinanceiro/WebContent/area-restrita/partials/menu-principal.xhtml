@@ -15,7 +15,12 @@
 				 			<p:menuitem value="Ver Contas" action="/area-restrita/conta/gerencia-conta" icon="ui-icon-document" />
 				 		</p:submenu>
 				 	</p:column>
-				 </p:submenu>				
+				 	<p:column>
+				 		<p:submenu label="Usuarios">
+				 			<p:menuitem value="Gerenciar Usuários" action="/area-restrita/usuario/gerencia-usuario" icon="ui-icon-document" />
+				 		</p:submenu>
+				 	</p:column>
+				 </p:submenu>				 				
 				<p:menuitem value="Sair" action="#{usuarioBean.registraSaida}" icon="ui-icon-stop" />				
 			</p:megaMenu>
 		</h:form>

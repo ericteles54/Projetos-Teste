@@ -6,17 +6,19 @@
 	xmlns:p="http://primefaces.org/ui">
 		
 	<ui:define name="usuario-logado">
-		<ui:include src="/WEB-INF/partials/info-usuario-logado.xhtml">
-			<ui:param name="username" value="#{sessionScope.username}" />
-		</ui:include>
+		<h:outputText value="Olá #{usuarioBean.usuarioAutenticado.nome}. Você está logado." style="color: blue" />
 	</ui:define>
 	
 	<ui:define name="menu-principal">
-		<ui:include src="/WEB-INF/partials/menu-principal.xhtml">
+		<ui:include src="/area-restrita/partials/menu-principal.xhtml">
 		</ui:include>	
 	</ui:define>
 	
 	<ui:define name="corpo-principal">
 		<p>Teste</p>
+		<p>ID: <h:outputText value="#{usuarioBean.usuarioAutenticado.id}" /></p>
+		<p>Nome: <h:outputText value="#{usuarioBean.usuarioAutenticado.nome}" /></p>
+		<p>Username: <h:outputText value="#{usuarioBean.usuarioAutenticado.username}" /></p>
+		<p>Password: <h:outputText value="#{usuarioBean.usuarioAutenticado.password}" /></p>
 	</ui:define>
 </ui:composition>

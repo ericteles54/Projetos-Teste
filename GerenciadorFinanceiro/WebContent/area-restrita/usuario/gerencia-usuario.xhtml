@@ -1,0 +1,68 @@
+<ui:composition template="/WEB-INF/templates/template-principal.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+		
+	<ui:define name="usuario-logado">
+		<h:outputText value="Olá #{usuarioBean.usuarioAutenticado.nome}. Você está logado." style="color: blue" />
+	</ui:define>
+	
+	<ui:define name="menu-principal">
+		<ui:include src="/area-restrita/partials/menu-principal.xhtml">
+		</ui:include>	
+	</ui:define>
+	
+	<ui:define name="corpo-principal">	
+		<h:form id="formulario-gerencia-usuarios">
+			<p:growl id="msgs" showDetail="true" />
+			<p:dataTable
+				id="usuarios"
+				var="usuario"
+				value="#{usuarioBean.usuarios}"
+				editable="true"
+				style="margin-botton: 20px">
+				
+				<f:facet name="header">Gerenciamento de Usuários</f:facet>
+				
+				<p:ajax event="rowEditInit" listener="#{usuarioBean.iniciaEdicaoColuna}" update=":formulario-gerencia-usuarios:msgs" />
+				<p:ajax event="rowEdit" listener="#{usuarioBean.posEdicaoColuna}" update=":formulario-gerencia-usuarios:msgs" />
+				<p:ajax event="rowEditCancel" listener="#{usuarioBean.cancelamentoEdicaoColuna}" update=":formulario-gerencia-usuarios:msgs" />
+							
+				<p:column headerText="Id" style="width:60px">
+					<h:outputText value="#{usuario.id}" />
+				</p:column>
+				<p:column headerText="Nome">
+					<p:cellEditor>
+						<f:facet name="output"><h:outputText value="#{usuario.nome}" /></f:facet>
+						<f:facet name="input"><p:inputText value="#{usuario.nome}" style="width:100%" /></f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="username">
+					<p:cellEditor>
+						<f:facet name="output"><h:outputText value="#{usuario.username}" /></f:facet>
+						<f:facet name="input"><p:inputText value="#{usuario.username}" /></f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="password">
+					<p:cellEditor>
+						<f:facet name="output"><h:outputText value="" /></f:facet>
+						<f:facet name="input"><h:inputSecret value="#{usuario.password}" /></f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Editar" style="width:45px">
+					<p:rowEditor />					
+				</p:column>
+				<p:column headerText="Remover" style="width:70px">
+					<p:commandButton
+						icon="ui-icon-trash"
+						title="Remove Usuário"
+						action="#{usuarioBean.removeUsuario(usuario)}"
+						ajax="false">				
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>

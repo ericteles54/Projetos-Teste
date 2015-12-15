@@ -5,13 +5,11 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 	<ui:define name="usuario-logado">
-		<ui:include src="/WEB-INF/partials/info-usuario-logado.xhtml">
-			<ui:param name="username" value="#{sessionScope.username}" />
-		</ui:include>
+		<h:outputText value="Olá #{usuarioBean.usuarioAutenticado.nome}. Você está logado." style="color: blue" />
 	</ui:define>
 	
 	<ui:define name="menu-principal">
-		<ui:include src="/WEB-INF/partials/menu-principal.xhtml">
+		<ui:include src="/area-restrita/partials/menu-principal.xhtml">
 		</ui:include>	
 	</ui:define>
 	
