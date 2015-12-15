@@ -62,11 +62,6 @@ public class ContaBean {
 		return this.contas;
 	}
 	
-	public String verDetalhesConta() {
-		return "/area-restrita/conta/gerencia-movimentacao";
-		
-	}
-	
 	private ExternalContext getExternalContext() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		ExternalContext externalContext = facesContext.getExternalContext();
