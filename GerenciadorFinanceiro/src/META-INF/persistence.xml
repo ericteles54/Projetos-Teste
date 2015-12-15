@@ -3,6 +3,9 @@
 	<persistence-unit name="GerenciadorFinanceiro" transaction-type="RESOURCE_LOCAL">
 		<class>modelo.entidades.Usuario</class>
 		<class>modelo.entidades.Conta</class>
+		<class>modelo.entidades.Receita</class>
+		<class>modelo.entidades.Despesa</class>
+		<class>modelo.entidades.Movimentacao</class>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

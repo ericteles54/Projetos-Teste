@@ -30,7 +30,7 @@ public class UsuarioAutenticacaoBean {
 			ExternalContext externalContext = this.getExternalContext();
 			HttpSession session = (HttpSession) externalContext.getSession(false);
 			session.setAttribute("username", this.username);
-			session.setAttribute("id", id);
+			session.setAttribute("usuario_id", id);
 			
 						
 			return "/area-restrita/home";

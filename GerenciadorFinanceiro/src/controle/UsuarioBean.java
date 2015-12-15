@@ -25,15 +25,16 @@ public class UsuarioBean {
 	private List<Usuario> usuarios;
 	
 	public UsuarioBean() {
+		
 		ExternalContext externalContext = this.getExternalContext();
 		HttpSession session = (HttpSession) externalContext.getSession(true);
-		String username = (String)session.getAttribute("username");
+		Long id = (Long)session.getAttribute("usuario_id");
 		
 		EntityManager manager = this.getEntityManager();
 		
 		UsuarioRepository usuarioRepository = new UsuarioRepository(manager);
-		this.setUsuarioAutenticado(usuarioRepository.buscaUsuarioPorUsername(username));
-		this.usuarioAutenticado.setPassword("");
+		this.setUsuarioAutenticado(usuarioRepository.buscaUsuarioPorId(id));	
+
 	}
 
 	public List<Usuario> getUsuarios() {

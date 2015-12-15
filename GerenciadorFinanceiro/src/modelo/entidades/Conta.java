@@ -1,11 +1,15 @@
 package modelo.entidades;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -17,6 +21,10 @@ public class Conta {
 	@Id @GeneratedValue
 	private Long id;
 	
+	@Temporal(TemporalType.DATE)
+	@NotNull(message="A data de criação da conta não pode ser nula")
+	private Date dataCriacao;
+	
 	@NotNull(message="O banco não pode ser nulo")
 	private String banco;
 	
@@ -26,7 +34,7 @@ public class Conta {
 	@NotNull(message="O saldo não pode ser nulo")
 	private Double saldo;
 	
-	@ManyToOne
+	@ManyToOne(optional=false)
 	@NotNull(message="O Usuario não pode ser nulo")
 	private Usuario usuario;
 
@@ -69,6 +77,14 @@ public class Conta {
 
 	public void setSaldo(Double saldo) {
 		this.saldo = saldo;
+	}
+
+	public Date getDataCriacao() {
+		return dataCriacao;
+	}
+
+	public void setDataCriacao(Date dataCriacao) {
+		this.dataCriacao = dataCriacao;
 	}
 	
 	

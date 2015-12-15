@@ -16,6 +16,8 @@ import modelo.conversores.CryptoConverterPassword;
 @NamedQueries({
 	@NamedQuery(name="Usuario.buscaTodos",
 			query="SELECT u FROM Usuario u"),
+	@NamedQuery(name="Usuario.buscaPorIdSemPassword",
+			query="SELECT u.id,u.nome,u.username FROM Usuario u WHERE u.id = :id"),
 	@NamedQuery(name="Usuario.buscaPorUsername",
 			query="SELECT u FROM Usuario u WHERE u.username = :username")
 })

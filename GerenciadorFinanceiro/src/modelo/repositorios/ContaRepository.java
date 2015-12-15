@@ -15,11 +15,16 @@ public class ContaRepository {
 		this.manager = manager;
 	}
 	
-	public void adiciona(Conta conta) {
+	public void adicionaConta(Conta conta) {
 		this.manager.persist(conta);
 	}
 	
-	public List<Conta> listaTodas(Long usuario_id) {
+	public void removeConta(Conta conta) {
+		this.manager.remove(conta);
+	}
+	
+	public List<Conta> listaTodasPorUsuario(Long usuario_id) {
+		
 		TypedQuery<Conta> query = this.manager.createNamedQuery("Conta.buscaPorUsuario", Conta.class);
 		query.setParameter("usuario_id", usuario_id);
 		

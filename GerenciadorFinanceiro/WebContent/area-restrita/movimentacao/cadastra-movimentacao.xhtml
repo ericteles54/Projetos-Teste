@@ -15,27 +15,27 @@
 	
 	<ui:define name="corpo-principal">
 	
-		<h1>Cadastro de contas</h1>
+		<h1>Cadastro de Movimentações</h1>
 		
 		<h:form>
 			<h:messages errorStyle="color: red" infoStyle="color: blue" warnStyle="color: yellow" />
 		
 			<h:panelGrid columns="2">
 				<h:outputText value="Data de Criação: " for="campo-data-criacao" />
-				<h:inputText value="#{contaBean.conta.dataCriacao}" readonly="true" id="campo-data-criacao">
+				<h:inputText value="#{movimentacaoBean.receita.data}" id="campo-data-criacao">
 					<f:convertDateTime pattern="dd/MM/yyyy" type="date"/>
 				</h:inputText>
 				
-				<h:outputLabel value="Banco (nome): " for="campo-nome-banco" />
-				<h:inputText value="#{contaBean.conta.banco}" id="campo-nome-banco"/>
+				<h:outputLabel value="Descricao: " for="campo-descricao" />
+				<h:inputText value="#{movimentacaoBean.receita.descricao}" id="campo-descricao"/>
 				
-				<h:outputLabel value="Conta (nome): " for="campo-nome-conta" />
-				<h:inputText value="#{contaBean.conta.nome}" id="campo-nome-conta"/>
+				<h:outputLabel value="Valor: R$" for="campo-valor" />
+				<h:inputText value="#{movimentacaoBean.receita.valor}" id="campo-valor"/>
 				
-				<h:outputLabel value="Saldo Inicial: R$" for="campo-saldo-inicial" />
-				<h:inputText value="#{contaBean.conta.saldo}" id="campo-saldo-inicial"/>				
+				<h:outputLabel value="Status: " for="campo-status" />
+				<h:inputText value="#{movimentacaoBean.receita.status}" id="campo-status"/>			
 				
-				<h:commandButton action="#{contaBean.adicionaConta(contaBean.usuarioAutenticado)}" value="Adicionar" />
+				<h:commandButton action="#{movimentacaoBean.adicionaReceita}" value="Adicionar" />
 			</h:panelGrid>
 		</h:form>		
 	</ui:define>

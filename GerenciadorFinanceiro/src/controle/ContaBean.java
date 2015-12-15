@@ -1,5 +1,6 @@
 package controle;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -11,6 +12,8 @@ import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.primefaces.event.RowEditEvent;
+
 import modelo.entidades.Conta;
 import modelo.entidades.Usuario;
 import modelo.repositorios.ContaRepository;
@@ -20,23 +23,31 @@ import modelo.repositorios.UsuarioRepository;
 @SessionScoped
 public class ContaBean {
 
+	private Usuario usuarioAutenticado;
 	private Conta conta = new Conta();
 	private List<Conta> contas;
-
-	public void adicionaConta() {
+	private Conta contaSelecionada = new Conta();
+	
+	public ContaBean() {
+		this.conta.setDataCriacao(Calendar.getInstance().getTime());
 		
 		ExternalContext externalContext = this.getExternalContext();
-		HttpSession session = (HttpSession) externalContext.getSession(true);		
-		String username = (String)session.getAttribute("username");
+		HttpSession session = (HttpSession) externalContext.getSession(true);
+		Long id = (Long)session.getAttribute("usuario_id");
 		
 		EntityManager manager = this.getEntityManager();
-				
+		
 		UsuarioRepository usuarioRepository = new UsuarioRepository(manager);
-		Usuario usuario = usuarioRepository.buscaUsuarioPorUsername(username);
+		this.setUsuarioAutenticado(usuarioRepository.buscaUsuarioPorId(id));
+	}
+
+	public void adicionaConta(Usuario usuario) {
+						
 		this.conta.setUsuario(usuario);
 		
+		EntityManager manager = this.getEntityManager();
 		ContaRepository contaRepository = new ContaRepository(manager);
-		contaRepository.adiciona(this.conta);
+		contaRepository.adicionaConta(this.conta);
 				
 		FacesMessage mensagem = new FacesMessage(
 				"A conta " + this.conta.getBanco() + ": " + this.conta.getNome() + " foi adicionada com sucesso");
@@ -46,17 +57,25 @@ public class ContaBean {
 		this.conta = new Conta();
 	}
 	
-	public List<Conta> getContas() {
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		ExternalContext externalContext = facesContext.getExternalContext();
+	public void removeConta(Conta conta) {
 		
-		HttpSession session = (HttpSession) externalContext.getSession(true);
-		Long usuario_id = (Long) session.getAttribute("id");		
+		EntityManager manager = this.getEntityManager();	
+		ContaRepository contaRepository = new ContaRepository(manager);
+		
+		contaRepository.removeConta(conta);
+		
+		FacesMessage mensagem = new FacesMessage(
+				"A conta: " + conta.getBanco() + " - " + conta.getNome() + " foi removida com sucesso","");
+		mensagem.setSeverity(FacesMessage.SEVERITY_INFO);
+		FacesContext.getCurrentInstance().addMessage(null, mensagem);
+	}
+	
+	public List<Conta> listaTodasPorUsuario(Usuario usuario) {
 		
 		EntityManager manager = this.getEntityManager();
 		ContaRepository contaRepository = new ContaRepository(manager);
 		
-		this.contas = contaRepository.listaTodas(usuario_id);
+		this.contas = contaRepository.listaTodasPorUsuario(usuario.getId());
 		
 		return this.contas;
 	}
@@ -78,6 +97,43 @@ public class ContaBean {
 		return manager;
 	}
 	
+	/*
+	 * Tratador de eventos da tabela de gerenciamento de Contas 
+	 * 
+	 */
+	public void posEdicaoColuna(RowEditEvent event) {
+        FacesMessage msg = new FacesMessage("A conta: " + (String)((Conta) event.getObject()).getBanco() + " - " + (String)((Conta) event.getObject()).getNome() + " foi editada.", "");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+		
+	public void cancelamentoEdicaoColuna(RowEditEvent event) {
+        FacesMessage msg = new FacesMessage("Cancelada edição da conta: " + (String)((Conta) event.getObject()).getBanco() + " - " + (String)((Conta) event.getObject()).getNome(), "");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+	
+	public void iniciaEdicaoColuna(RowEditEvent event) {        
+        FacesMessage msg = new FacesMessage("Editando conta: " + (String)((Conta) event.getObject()).getBanco() + " - " + (String)((Conta) event.getObject()).getNome(), "");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+	
+	public String verDetalhesDaConta(Conta conta) {
+		
+		ExternalContext externalContext = this.getExternalContext();
+		HttpSession session = (HttpSession) externalContext.getSession(false);
+		session.setAttribute("conta_selecionada", conta);		
+		
+		return "/area-restrita/movimentacao/cadastra-movimentacao";
+	}
+	
+	/*
+	 *  Fim Tratador de eventos da tabela de gerenciamento de Contas
+	 */
+		
+	
+	/*
+	 * GETTERS AND SETTERS 
+	 */
+	
 	public Conta getConta() {
 		return conta;
 	}
@@ -86,7 +142,27 @@ public class ContaBean {
 		this.conta = conta;
 	}	
 
+	public List<Conta> getContas() {
+		return contas;
+	}
+	
 	public void setContas(List<Conta> contas) {
 		this.contas = contas;
+	}
+
+	public Usuario getUsuarioAutenticado() {
+		return usuarioAutenticado;
+	}
+
+	public void setUsuarioAutenticado(Usuario usuarioAutenticado) {
+		this.usuarioAutenticado = usuarioAutenticado;
+	}
+
+	public Conta getContaSelecionada() {
+		return contaSelecionada;
+	}
+
+	public void setContaSelecionada(Conta contaSelecionada) {
+		this.contaSelecionada = contaSelecionada;
 	}	
 }
