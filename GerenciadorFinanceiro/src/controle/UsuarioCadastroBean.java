@@ -17,7 +17,7 @@ import modelo.repositorios.UsuarioRepository;
 
 @ManagedBean
 @RequestScoped
-public class UsuarioCadastrametnoBean {
+public class UsuarioCadastroBean {
 	
 	private Usuario usuario = new Usuario();	
 
@@ -25,7 +25,7 @@ public class UsuarioCadastrametnoBean {
 		EntityManager manager = this.getEntityManager();
 		
 		UsuarioRepository usuarioRepository = new UsuarioRepository(manager);
-		usuarioRepository.adiciona(this.usuario);
+		usuarioRepository.adicionaUsuario(this.usuario);
 		
 		FacesMessage mensagem = new FacesMessage(
 				"O usuário " + this.usuario.getNome() + " foi adicionado com sucesso");
@@ -55,7 +55,7 @@ public class UsuarioCadastrametnoBean {
 			
 			FacesContext context = FacesContext.getCurrentInstance();
 			context.addMessage(source.getClientId(), mensagem);
-			context.renderResponse();				
+			context.renderResponse();
 		}		
 	}
 

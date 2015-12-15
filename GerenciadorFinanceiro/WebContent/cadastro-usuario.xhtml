@@ -8,26 +8,26 @@
 		<h1>Cadastro de usuários</h1>
 				
 		<h:form>			
-			<f:event type="postValidate" listener="#{usuarioCadastrametnoBean.validaUsername}"></f:event>
+			<f:event type="postValidate" listener="#{usuarioCadastroBean.validaUsername}"></f:event>
 			<h:messages errorStyle="color: red" infoStyle="color: blue" warnStyle="color: yellow" />
 		
 			<h:panelGrid columns="2">
 				<h:outputLabel value="Nome: " for="campo-nome" />
 				<h:inputText
-					value="#{usuarioCadastrametnoBean.usuario.nome}"
+					value="#{usuarioCadastroBean.usuario.nome}"
 					id="campo-nome" />
 				
 				<h:outputLabel value="Username: " for="campo-username" />
 				<h:inputText
-					value="#{usuarioCadastrametnoBean.usuario.username}"
+					value="#{usuarioCadastroBean.usuario.username}"
 					id="campo-username" />
 				
 				<h:outputLabel value="Password: " for="campo-password" />
 				<h:inputSecret
-					value="#{usuarioCadastrametnoBean.usuario.password}"
+					value="#{usuarioCadastroBean.usuario.password}"
 					id="campo-password" />
 				
-				<h:commandButton action="#{usuarioCadastrametnoBean.adicionaUsuario}" value="Cadastrar" />
+				<h:commandButton action="#{usuarioCadastroBean.adicionaUsuario}" value="Cadastrar" />
 			</h:panelGrid>
 		</h:form>		
 	</ui:define>

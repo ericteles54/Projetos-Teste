@@ -11,7 +11,6 @@ import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.primefaces.event.SelectEvent;
 import modelo.entidades.Conta;
 import modelo.entidades.Usuario;
 import modelo.repositorios.ContaRepository;

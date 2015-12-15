@@ -15,7 +15,7 @@ public class UsuarioRepository {
 		this.manager = manager;
 	}
 	
-	public void adiciona(Usuario usuario) {
+	public void adicionaUsuario(Usuario usuario) {
 		this.manager.persist(usuario);
 	}
 	
