@@ -27,6 +27,8 @@ public class MovimentacaoBean {
 	private Conta contaSelecionada;
 	private Receita receita = new Receita();
 	private Despesa despesa = new Despesa();
+	private Movimentacao movimentacao = new Movimentacao() {
+	};
 	private List<Movimentacao> movimentacoes;
 	
 	public MovimentacaoBean() {
@@ -63,6 +65,24 @@ public class MovimentacaoBean {
 				"A despesa " + this.despesa.getDescricao() + " - Valor:  " + this.despesa.getValor() + " foi adicionada com sucesso");
 		mensagem.setSeverity(FacesMessage.SEVERITY_INFO);
 		FacesContext.getCurrentInstance().addMessage(null, mensagem);
+	}
+	
+	public void adicionaMovimentacao() {
+		if(this.movimentacao.getTipo().equals("RECEITA")) {
+			this.receita.setData(this.movimentacao.getData());
+			this.receita.setDescricao(this.movimentacao.getDescricao());
+			this.receita.setStatus(this.movimentacao.getStatus());
+			this.receita.setValor(this.movimentacao.getValor());
+			
+			this.adicionaReceita();
+		} else {
+			this.despesa.setData(this.movimentacao.getData());
+			this.despesa.setDescricao(this.movimentacao.getDescricao());
+			this.despesa.setStatus(this.movimentacao.getStatus());
+			this.despesa.setValor(this.movimentacao.getValor());
+			
+			this.adicionaDespesa();
+		}		
 	}
 	
 	public void removeMovimentacao(Movimentacao movimentacao) {
@@ -157,6 +177,14 @@ public class MovimentacaoBean {
 
 	public void setMovimentacoes(List<Movimentacao> movimentacoes) {
 		this.movimentacoes = movimentacoes;
+	}
+
+	public Movimentacao getMovimentacao() {
+		return movimentacao;
+	}
+
+	public void setMovimentacao(Movimentacao movimentacao) {
+		this.movimentacao = movimentacao;
 	}
 	
 	

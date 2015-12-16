@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.6.25, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.27, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: gerenciadorfinanceiro_db
 -- ------------------------------------------------------
--- Server version	5.6.25-0ubuntu1
+-- Server version	5.6.27-0ubuntu0.14.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -63,7 +63,7 @@ CREATE TABLE `Movimentacao` (
   PRIMARY KEY (`id`),
   KEY `FK_7o9440vw5hvyvd59ngil2gwbs` (`conta_id`),
   CONSTRAINT `FK_7o9440vw5hvyvd59ngil2gwbs` FOREIGN KEY (`conta_id`) REFERENCES `Conta` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +72,7 @@ CREATE TABLE `Movimentacao` (
 
 LOCK TABLES `Movimentacao` WRITE;
 /*!40000 ALTER TABLE `Movimentacao` DISABLE KEYS */;
-INSERT INTO `Movimentacao` VALUES ('Receita',1,'2015-12-14 22:00:00','condominio',0,20,2);
+INSERT INTO `Movimentacao` VALUES ('Receita',1,'2015-12-14 22:00:00','condominio',0,20,2),('Despesa',3,'2015-12-15 22:00:00','cas',0,400.76,2);
 /*!40000 ALTER TABLE `Movimentacao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -112,4 +112,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-12-16  5:52:12
+-- Dump completed on 2015-12-16  9:54:24

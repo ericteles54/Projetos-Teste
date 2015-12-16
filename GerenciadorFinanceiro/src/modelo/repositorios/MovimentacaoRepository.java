@@ -6,6 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import modelo.entidades.Movimentacao;
+import modelo.entidades.Movimentacao.Tipo;
+import modelo.entidades.Receita;
 
 public class MovimentacaoRepository {
 
@@ -33,6 +35,15 @@ public class MovimentacaoRepository {
 			movimentacoes = query.getResultList();
 		} catch (Exception e) {
 			movimentacoes = null;
+		}
+		
+		for(Movimentacao movimentacao : movimentacoes) {
+			if(movimentacao instanceof Receita) {
+				movimentacao.setTipo(Tipo.RECEITA);
+			} else {
+				movimentacao.setTipo(Tipo.DESPESA);
+			}
+				
 		}
 		
 		return movimentacoes;

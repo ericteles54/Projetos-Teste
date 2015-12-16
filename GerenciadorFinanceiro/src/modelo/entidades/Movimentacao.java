@@ -10,6 +10,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 
@@ -39,6 +40,10 @@ public abstract class Movimentacao {
 	@ManyToOne
 	@NotNull(message="A conta vinculada à movimentacao não pode ser nula")
 	private Conta conta;
+	
+	public enum Tipo{RECEITA, DESPESA};
+	@Transient
+	private Tipo tipo;
 
 	
 	public Date getData() {
@@ -87,5 +92,13 @@ public abstract class Movimentacao {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public Tipo getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(Tipo tipo) {
+		this.tipo = tipo;
 	}
 }

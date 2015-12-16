@@ -16,27 +16,37 @@
 	
 	<ui:define name="corpo-principal">
 	
-		<h1>Cadastro de Movimentações</h1>
+		<h3>Cadastro de Movimentações</h3>
 		
 		<h:form>
 			<h:messages errorStyle="color: red" infoStyle="color: blue" warnStyle="color: yellow" />
 		
 			<h:panelGrid columns="2">
-				<h:outputText value="Data de Criação: " for="campo-data-criacao" />
-				<h:inputText value="#{movimentacaoBean.receita.data}" id="campo-data-criacao">
+				<p:outputLabel value="Data:" for="campo-data" />
+				<p:inputMask id="campo-data" value="#{movimentacaoBean.movimentacao.data}" mask="99/99/9999" size="8">
 					<f:convertDateTime pattern="dd/MM/yyyy" type="date"/>
-				</h:inputText>
+				</p:inputMask>
 				
-				<h:outputLabel value="Descricao: " for="campo-descricao" />
-				<h:inputText value="#{movimentacaoBean.receita.descricao}" id="campo-descricao"/>
+				<p:outputLabel value="Descrição:" for="campo-descricao" />
+				<p:inputText value="#{movimentacaoBean.movimentacao.descricao}" id="campo-descricao" size="30"/>
 				
-				<h:outputLabel value="Valor: R$" for="campo-valor" />
-				<h:inputText value="#{movimentacaoBean.receita.valor}" id="campo-valor"/>
+				<p:outputLabel value="Valor: R$ (xxx.xx)" for="campo-valor" />
+				<p:inputText value="#{movimentacaoBean.movimentacao.valor}" id="campo-valor" size="12" />
 				
-				<h:outputLabel value="Status: " for="campo-status" />
-				<h:inputText value="#{movimentacaoBean.receita.status}" id="campo-status"/>			
+				<p:outputLabel value="Status:" for="campo-status" />
+				<p:selectOneRadio id="campo-status" value="#{movimentacaoBean.movimentacao.status}">
+					<f:selectItem itemLabel="Consolidada" itemValue="CONSOLIDADA"/>
+					<f:selectItem itemLabel="Não Consolidada" itemValue="NAO_CONSOLIDADA"/>
+				</p:selectOneRadio>
 				
-				<h:commandButton action="#{movimentacaoBean.adicionaReceita}" value="Adicionar" />
+				<p:outputLabel value="Tipo:" for="campo-tipo" />
+				<p:selectOneRadio id="campo-tipo" value="#{movimentacaoBean.movimentacao.tipo}">
+					<f:selectItem itemLabel="Receita" itemValue="RECEITA" />
+					<f:selectItem itemLabel="Despesa" itemValue="DESPESA" />
+				</p:selectOneRadio>	
+							
+				
+				<h:commandButton action="#{movimentacaoBean.adicionaMovimentacao}" value="Adicionar" />
 			</h:panelGrid>
 		</h:form>
 		
@@ -55,6 +65,10 @@
 				<p:ajax event="rowEditInit" listener="#{movimentacaoBean.iniciaEdicaoColuna}" update=":formulario-gerencia-movimentacoes:msgs" />
 				<p:ajax event="rowEdit" listener="#{movimentacaoBean.posEdicaoColuna}" update=":formulario-gerencia-movimentacoes:msgs" />
 				<p:ajax event="rowEditCancel" listener="#{movimentacaoBean.cancelamentoEdicaoColuna}" update=":formulario-gerencia-movimentacoes:msgs" />
+				
+				<p:column headerText="Tipo" style="width:100px">
+					<h:outputText value="#{movimentacao.tipo}" />
+				</p:column>
 				
 				<p:column headerText="Data" style="width:100px">
 					<h:outputText value="#{movimentacao.data}">
