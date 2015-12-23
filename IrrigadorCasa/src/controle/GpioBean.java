@@ -1,7 +1,9 @@
-package modelo.repositorios;
+package controle;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
+import modelo.repositorios.GerenciaEstadoBomba;
 
 @ManagedBean
 @SessionScoped

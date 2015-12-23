@@ -4,8 +4,6 @@ import com.pi4j.io.gpio.PinPullResistance;
 import com.pi4j.io.gpio.PinState;
 import com.pi4j.io.gpio.RaspiPin;
 
-import controle.Gpio;
-
 public class GerenciaEstadoBomba {
 
 	private Gpio gpio = new Gpio();

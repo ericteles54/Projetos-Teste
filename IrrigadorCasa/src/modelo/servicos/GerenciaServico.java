@@ -11,7 +11,7 @@ import com.pi4j.io.gpio.PinPullResistance;
 import com.pi4j.io.gpio.PinState;
 import com.pi4j.io.gpio.RaspiPin;
 
-import controle.Gpio;
+import modelo.repositorios.Gpio;
 
 public class GerenciaServico implements SystemEventListener {
 	
