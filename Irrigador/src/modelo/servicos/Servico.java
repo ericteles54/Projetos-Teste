@@ -10,7 +10,7 @@ public class Servico implements Runnable {
 		while(this.isServicoIniciado()) {
 			System.out.println("*********** Executando serviço através da Thread **********");
 			try {
-				Thread.sleep(60000);
+				Thread.sleep(100000);
 			} catch (InterruptedException e) {				
 				e.printStackTrace();
 			}
