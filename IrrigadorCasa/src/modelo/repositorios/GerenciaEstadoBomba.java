@@ -11,12 +11,13 @@ public class GerenciaEstadoBomba {
 	private Gpio gpio = new Gpio();
 	
 	public GerenciaEstadoBomba() {
-		
+		/*
 		this.gpio.setBomba(this.gpio.getGpio().provisionDigitalOutputPin(RaspiPin.GPIO_01, "Bomba", PinState.LOW));
 		this.gpio.setValvula(this.gpio.getGpio().provisionDigitalOutputPin(RaspiPin.GPIO_04, "Valvula", PinState.LOW));
 		
 		this.gpio.getBomba().setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
 		this.gpio.getValvula().setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
+		*/
 	}
 	
 	public void ligaBomba() {		

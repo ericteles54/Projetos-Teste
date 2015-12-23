@@ -7,8 +7,16 @@ import javax.faces.event.PreDestroyApplicationEvent;
 import javax.faces.event.SystemEvent;
 import javax.faces.event.SystemEventListener;
 
+import com.pi4j.io.gpio.PinPullResistance;
+import com.pi4j.io.gpio.PinState;
+import com.pi4j.io.gpio.RaspiPin;
+
+import controle.Gpio;
+
 public class GerenciaServico implements SystemEventListener {
-private Servico servico = new Servico();
+	
+	private Servico servico = new Servico();
+	private Gpio gpio = new Gpio();
 
 
 	@Override
@@ -22,6 +30,16 @@ private Servico servico = new Servico();
 		
 		if(event instanceof PostConstructApplicationEvent) {
 			System.out.println("Execução do método de PostConstructApplicationEvent");
+			
+			/////////////////////////////////////////////////////////////////////////////
+			this.gpio.setBomba(this.gpio.getGpio().provisionDigitalOutputPin(RaspiPin.GPIO_01, "Bomba", PinState.LOW));
+			this.gpio.setValvula(this.gpio.getGpio().provisionDigitalOutputPin(RaspiPin.GPIO_04, "Valvula", PinState.LOW));
+			
+			this.gpio.getBomba().setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
+			this.gpio.getValvula().setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
+			////////////////////////////////////////////////////////////////////////////
+			
+			
 			this.iniciaServico();
 		}
 		
