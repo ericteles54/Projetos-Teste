@@ -7,9 +7,11 @@ import javax.faces.event.PreDestroyApplicationEvent;
 import javax.faces.event.SystemEvent;
 import javax.faces.event.SystemEventListener;
 
+import modelo.repositorios.Gpio;
+
 public class GerenciaServico implements SystemEventListener {
 	
-	private Servico servico = new Servico();
+	private Servico servico = new Servico();	
 
 	@Override
 	public boolean isListenerForSource(Object source) {
@@ -21,25 +23,23 @@ public class GerenciaServico implements SystemEventListener {
 	public void processEvent(SystemEvent event) throws AbortProcessingException {
 		
 		if(event instanceof PostConstructApplicationEvent) {
-			System.out.println("Execução do método de PostConstructApplicationEvent");	
+			System.out.println("Executando método de PostConstructApplicationEvent da Classe GerenciaServiço");
 			
-			this.iniciaServico();
+			System.out.println("Instanciando a GPIO");
+			Gpio.getInstance();
+			
+			System.out.println("Iniciando serviço de monitoramento do sistema");			
+			new Thread(this.servico).start();
 		}
 		
 		if(event instanceof PreDestroyApplicationEvent) {
-			System.out.println("Execução do método de PreDestroyApplicationEvent");
+			System.out.println("Executando método de PreDestroyApplicationEvent da Classe GerenciaServiço");			
+						
+			System.out.println("****** Parando serviço de monitoramento do sistema *******");
+			this.servico.setServicoIniciado(false);
 			
-			this.paraServico();
+			System.out.println("Finalizando a GPIO");
+			Gpio.getInstance().fechaGpio();
 		}		
-	}
-	
-	public void iniciaServico() {
-		System.out.println("****** Iniciando serviço de monitoramento do sistema *******");
-		new Thread(this.servico).start();		
-	}
-	
-	public void paraServico() {
-		System.out.println("****** Parando serviço de monitoramento do sistema *******");
-		this.servico.setServicoIniciado(false);
 	}
 }

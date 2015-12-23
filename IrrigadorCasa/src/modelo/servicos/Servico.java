@@ -1,5 +1,7 @@
 package modelo.servicos;
 
+import modelo.repositorios.GerenciaEstadoBomba;
+
 public class Servico implements Runnable {
 	
 	private boolean servicoIniciado = true;
@@ -8,7 +10,14 @@ public class Servico implements Runnable {
 	public void run() {	
 				
 		while(this.isServicoIniciado()) {
-			System.out.println("*********** Executando serviço através da Thread **********");
+			
+			System.out.println("**** Alternando estado da bomba através do serviço *****");
+			GerenciaEstadoBomba gb = new GerenciaEstadoBomba();
+			if (gb.bombaLigada()) {
+				gb.desligaBomba();
+			} else {
+				gb.ligaBomba();
+			}
 			
 			
 			try {

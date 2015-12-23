@@ -1,0 +1,40 @@
+<ui:composition template="/WEB-INF/templates/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+
+<ui:define name="corpo-principal">
+<div style="height:500px">
+    <h:form>
+        <p:growl id="msgs" showDetail="true" /> 
+ 		
+        <p:dashboard id="board" model="#{principalBean.dashboardModelo}">
+            <p:ajax event="reorder" listener="#{principalBean.handleReorder}" update="msgs" />
+ 
+ 			<p:panel id="reservatorio" header="Reservatório">
+                <h:outputText value="Gráfico do Reservatório" />                
+   				<p:growl id="growl" showDetail="true" /> 
+    			<p:poll interval="10" update="grafico-reservatorio" listener="#{principalBean.atualizaVolumeAguaNoGrafico}"/>
+        		<p:chart id="grafico-reservatorio" type="bar" model="#{principalBean.barra}" style="width:200px;height:300px">
+            		<p:ajax event="itemSelect" listener="#{principalBean.itemSelect}" update="growl" />
+        		</p:chart>				
+            </p:panel>
+ 
+            <p:panel id="estadobomba" header="Estado da Bomba">
+            	<p:poll interval="5" update="estado-bomba-text" listener="#{principalBean.verificaEstadoBomba}"/>
+                <h:outputText value="#{principalBean.estadoBomba}" id="estado-bomba-text"/>
+            </p:panel>
+ 
+            <p:panel id="estadovalula" header="Estado da Valvula">
+            	<p:poll interval="5" update="estado-valvula-text" listener="#{principalBean.verificaEstadoValvula}"/>
+                <h:outputText value="#{principalBean.estadoValvula}" id="estado-valvula-text"/>
+            </p:panel>              
+        </p:dashboard>
+        
+        <div style="clear:both" />
+    </h:form>
+</div>
+</ui:define>
+</ui:composition>
