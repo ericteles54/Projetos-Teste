@@ -1,28 +1,18 @@
 package modelo.repositorios;
 
-import com.pi4j.io.gpio.PinPullResistance;
-import com.pi4j.io.gpio.PinState;
-import com.pi4j.io.gpio.RaspiPin;
-
 public class GerenciaEstadoBomba {
 
-	private Gpio gpio = new Gpio();
+	private Gpio gpio;
 	
 	public GerenciaEstadoBomba() {
-		/*
-		this.gpio.setBomba(this.gpio.getGpio().provisionDigitalOutputPin(RaspiPin.GPIO_01, "Bomba", PinState.LOW));
-		this.gpio.setValvula(this.gpio.getGpio().provisionDigitalOutputPin(RaspiPin.GPIO_04, "Valvula", PinState.LOW));
-		
-		this.gpio.getBomba().setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
-		this.gpio.getValvula().setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
-		*/
+		this.gpio = Gpio.getInstance();
 	}
 	
 	public void ligaBomba() {		
 		try {
-			this.gpio.getBomba().high();
+			this.gpio.getBomba().low();
 			Thread.sleep(3000);
-			this.gpio.getValvula().high();
+			this.gpio.getValvula().low();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -31,9 +21,9 @@ public class GerenciaEstadoBomba {
 	
 	public void desligaBomba() {
 		try {		
-			this.gpio.getValvula().low();
+			this.gpio.getValvula().high();
 			Thread.sleep(3000);
-			this.gpio.getBomba().low();
+			this.gpio.getBomba().high();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -41,14 +31,10 @@ public class GerenciaEstadoBomba {
 	}
 	
 	public boolean bombaLigada() {
-		return this.gpio.getBomba().isHigh();		
+		return this.gpio.getBomba().isLow();		
 	}
 	
 	public boolean valvulaAberta() {
-		return this.gpio.getValvula().isHigh();
-	}
-	
-	public void fechaGpio() {
-		this.gpio.getGpio().shutdown();
-	}
+		return this.gpio.getValvula().isLow();
+	}	
 }

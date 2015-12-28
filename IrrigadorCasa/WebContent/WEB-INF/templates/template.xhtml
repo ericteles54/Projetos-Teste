@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+      
+<h:head>
+	<title>Sistema de Irrigação</title>
+	<style type="text/css">
+    	.ui-panel, div.ui-state-hover {
+        	margin: 10px;
+            width:250px;
+		}
+                     
+        .ui-dashboard-column {
+        	width:270px;
+		}
+	</style>
+</h:head>
+
+<h:body>
+	<h:outputStylesheet library="css" name="principal.css" />
+
+	<div id="header" class="cabecalho" style="background-color: #2f4003; position:absolute; top: 1%; left: 1%; right: 1%;">
+			<ui:insert name="usuario-logado"></ui:insert>		
+			<p:graphicImage library="images" name="xixi.png" style="text-align:center; display:block;"></p:graphicImage>
+			<hr style="clear:both" />
+	</div>
+		
+	<div id="corpo-principal" class="corpo-principal" style="position: absolute; clear:both; top: 30%; left: 1%; right: 1%;">
+		<ui:insert name="corpo-principal">
+			Em construção.
+		</ui:insert>
+	</div>
+	
+	<div id="footer" class="rodape" style="text-align: center; position:absolute; clear:both; top: 90%; left: 1%; right: 1%;" >
+		<hr />
+		&copy; 2015 Eric. Todos os direitos reservados :-P
+	</div>
+	
+</h:body>
+</html>
