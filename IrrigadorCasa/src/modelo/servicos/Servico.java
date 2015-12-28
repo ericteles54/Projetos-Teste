@@ -14,9 +14,9 @@ public class Servico implements Runnable {
 			System.out.println("**** Alternando estado da bomba através do serviço *****");
 			GerenciaEstadoBomba gb = new GerenciaEstadoBomba();
 			if (gb.bombaLigada()) {
-				gb.desligaBomba();
+				//gb.desligaBomba();
 			} else {
-				gb.ligaBomba();
+				//gb.ligaBomba();
 			}
 			
 			

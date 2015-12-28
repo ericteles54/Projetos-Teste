@@ -31,7 +31,7 @@ public class Gpio {
 		this.getValvula().setShutdownOptions(true, PinState.HIGH, PinPullResistance.OFF);
 				
         this.setTrigPinDistanceSensor(this.gpio.provisionDigitalOutputPin(RaspiPin.GPIO_05, "trigPin", PinState.LOW));
-        this.setEchoPinDistanceSensor(this.gpio.provisionDigitalInputPin(RaspiPin.GPIO_06, "echoPin"));
+        this.setEchoPinDistanceSensor(this.gpio.provisionDigitalInputPin(RaspiPin.GPIO_06, "echoPin", PinPullResistance.PULL_DOWN));
                 
         this.getTrigPinDistanceSensor().setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
         this.getEchoPinDistanceSensor().setShutdownOptions(true);

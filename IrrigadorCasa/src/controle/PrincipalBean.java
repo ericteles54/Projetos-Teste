@@ -149,7 +149,7 @@ public class PrincipalBean implements Serializable {
 	
 	public void atualizaVolumeAguaNoGrafico() {
 		this.reservatorioGrafico.set(
-				"Agora", this.reservatorioFisico.calculaNivelDeAguaReservatorio());		
+				"Agora", this.reservatorioFisico.calculaNivelDeAguaReservatorio());				
 	}
 	
 	/*
@@ -161,7 +161,7 @@ public class PrincipalBean implements Serializable {
         		"Detalhes Reservatório",
         		"O reservatório esta com " +
         		this.reservatorioFisico.calculaNivelDeAguaReservatorio() +
-        		"%" + " da capacidade total.");
+        			"%" + " da capacidade total.");
          
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
