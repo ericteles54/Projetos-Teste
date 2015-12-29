@@ -1,40 +1,28 @@
 package modelo.repositorios;
 
+import modelo.hardwares.Rele2Canais;
+
 public class GerenciaEstadoBomba {
 
-	private Gpio gpio;
+	private Rele2Canais rele2Canais;
 	
 	public GerenciaEstadoBomba() {
-		this.gpio = Gpio.getInstance();
+		this.rele2Canais = new Rele2Canais();
 	}
 	
 	public void ligaBomba() {		
-		try {
-			this.gpio.getBomba().low();
-			Thread.sleep(5000);
-			this.gpio.getValvula().low();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}		
+		this.rele2Canais.ligaBomba();		
 	}
 	
 	public void desligaBomba() {
-		try {		
-			this.gpio.getValvula().high();
-			Thread.sleep(5000);
-			this.gpio.getBomba().high();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}	
+		this.rele2Canais.desligaBomba();	
 	}
 	
 	public boolean bombaLigada() {
-		return this.gpio.getBomba().isLow();		
+		return this.rele2Canais.bombaLigada();		
 	}
 	
 	public boolean valvulaAberta() {
-		return this.gpio.getValvula().isLow();
+		return this.rele2Canais.valvulaAberta();
 	}	
 }

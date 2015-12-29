@@ -1,4 +1,4 @@
-package modelo.repositorios;
+package modelo.hardwares;
 
 /**
  * Class to monitor distance measured by an HC-SR04 distance sensor on a 
@@ -13,11 +13,11 @@ package modelo.repositorios;
 
 
 /**
- * DistanceMonitor class to monitor distance measured by sensor
+ * SensorDistanciaHCSR04 class to monitor distance measured by sensor
  * 
  * @author Rutger Claes <rutger.claes@cs.kuleuven.be>
  */
-public class DistanceMonitor {
+public class SensorDistanciaHCSR04 {
     
     private final static float SOUND_SPEED = 340.29f;  // speed of sound in m/s
     
@@ -28,8 +28,13 @@ public class DistanceMonitor {
     
     private Gpio gpio = Gpio.getInstance();
     
-    public DistanceMonitor() {
-        this.gpio.getTrigPinDistanceSensor().low();
+    public SensorDistanciaHCSR04() {        
+        try {
+        	this.gpio.getTrigPinDistanceSensor().low();
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {			
+			e.printStackTrace();
+		}
     }
     
     /*
@@ -61,7 +66,7 @@ public class DistanceMonitor {
     /**
      * Wait for a high on the echo pin
      * 
-     * @throws DistanceMonitor.TimeoutException if no high appears in time
+     * @throws SensorDistanciaHCSR04.TimeoutException if no high appears in time
      */
     private void waitForSignal() throws TimeoutException {
         int countdown = TIMEOUT;
@@ -77,7 +82,7 @@ public class DistanceMonitor {
     
     /**
      * @return the duration of the signal in micro seconds
-     * @throws DistanceMonitor.TimeoutException if no low appears in time
+     * @throws SensorDistanciaHCSR04.TimeoutException if no low appears in time
      */
     private long measureSignal() throws TimeoutException {
         int countdown = TIMEOUT;

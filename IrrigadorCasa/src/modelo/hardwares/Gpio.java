@@ -1,4 +1,4 @@
-package modelo.repositorios;
+package modelo.hardwares;
 
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioFactory;
@@ -21,15 +21,21 @@ public class Gpio {
 	
 	
 	private Gpio() {
+		// Cria uma instância da GPIO
 		this.gpio = GpioFactory.getInstance();
 		
+		
 		// Configurando a GPIO
+		
+		// Configura pinos da Bomba e Valvula
 		this.setBomba(this.gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, "Bomba", PinState.HIGH));
 		this.setValvula(this.gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04, "Valvula", PinState.HIGH));
 			
 		this.getBomba().setShutdownOptions(true, PinState.HIGH, PinPullResistance.OFF);
 		this.getValvula().setShutdownOptions(true, PinState.HIGH, PinPullResistance.OFF);
 				
+		
+		// Configura pinos do Sensor de Distância
         this.setTrigPinDistanceSensor(this.gpio.provisionDigitalOutputPin(RaspiPin.GPIO_05, "trigPin", PinState.LOW));
         this.setEchoPinDistanceSensor(this.gpio.provisionDigitalInputPin(RaspiPin.GPIO_06, "echoPin", PinPullResistance.PULL_DOWN));
                 

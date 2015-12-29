@@ -7,7 +7,7 @@ import javax.faces.event.PreDestroyApplicationEvent;
 import javax.faces.event.SystemEvent;
 import javax.faces.event.SystemEventListener;
 
-import modelo.repositorios.Gpio;
+import modelo.hardwares.Gpio;
 
 public class GerenciaServico implements SystemEventListener {
 	

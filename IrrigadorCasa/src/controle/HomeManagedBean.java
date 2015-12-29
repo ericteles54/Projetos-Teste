@@ -26,14 +26,14 @@ import modelo.repositorios.Reservatorio;
 
 @ManagedBean(eager = true)
 @ApplicationScoped
-public class PrincipalBean implements Serializable {
+public class HomeManagedBean implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -1867153195436392571L;
 	
-	public PrincipalBean() {
-		System.out.println("*********O Managed Bean PrincipalBean foi inicializado *******");
+	public HomeManagedBean() {
+		System.out.println("*********O Managed Bean HomeManagedBean foi inicializado junto com o contexto da Aplicação *******");
 	}
 	
 	@PostConstruct
@@ -92,7 +92,7 @@ public class PrincipalBean implements Serializable {
 	    }
 	    
 	    /*
-		 * GETTERS AND SETTERS para reservatório
+		 * GETTERS AND SETTERS para dashboard
 		 */
 	    public DashboardModel getDashboardModelo() {
 			return dashboardModelo;
@@ -117,8 +117,6 @@ public class PrincipalBean implements Serializable {
 	private int volumeDeAgua;
 		
 	
-	
-
 	private void criaModeloGrafico() {
 		this.criaModeloGraficoEmBarra();
 	}
@@ -149,7 +147,7 @@ public class PrincipalBean implements Serializable {
 	
 	public void atualizaVolumeAguaNoGrafico() {
 		this.reservatorioGrafico.set(
-				"Agora", this.reservatorioFisico.calculaNivelDeAguaReservatorio());				
+				"Agora", this.reservatorioFisico.getPercentualDeAgua());				
 	}
 	
 	/*
@@ -160,7 +158,7 @@ public class PrincipalBean implements Serializable {
         		FacesMessage.SEVERITY_INFO,
         		"Detalhes Reservatório",
         		"O reservatório esta com " +
-        		this.reservatorioFisico.calculaNivelDeAguaReservatorio() +
+        		this.reservatorioFisico.getPercentualDeAgua() +
         			"%" + " da capacidade total.");
          
         FacesContext.getCurrentInstance().addMessage(null, msg);

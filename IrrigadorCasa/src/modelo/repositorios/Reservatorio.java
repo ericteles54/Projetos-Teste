@@ -1,26 +1,33 @@
 package modelo.repositorios;
 
-public class Reservatorio {
-	private int medidaAguaReservatorioCm;
+import modelo.hardwares.SensorDistanciaHCSR04;
+
+public class Reservatorio {	
 	
-	private DistanceMonitor monitor = new DistanceMonitor();
+	private SensorDistanciaHCSR04 sensorDeDistancia;
+	
+	public Reservatorio() {
+		this.sensorDeDistancia = new SensorDistanciaHCSR04();
+	}
 	
 	
-	public int calculaNivelDeAguaReservatorio() {
-		// lógica para calcular o nível de água do reservatório através do sensor
-		long percentual = 0;
+	public int getPercentualDeAgua() {
+		float medidaAguaReservatorioCm = 0;
+		float percentualAguaReservatorio = 0;
 		
 		try {
-			int menor = Integer.MAX_VALUE;
-			int maior = 0;
-						
+			// Realiza 5 leituras do sensor, elimina o maior e menor valor e
+			// faz a média com os 3 valores que sobram
 			
-			int[] leituras = new int[5];
+			float menor = Float.MAX_VALUE;
+			float maior = 0;
+						
+			float[] leituras = new float[5];
 			for(int i = 0; i < 5; i++) {
 				// Aguarda 2 segundos antes de fazer a leitura
 				Thread.sleep(2000);
 				
-				leituras[i] = Math.round(this.monitor.measureDistance());
+				leituras[i] = this.sensorDeDistancia.measureDistance();
 				
 				if (leituras[i] < menor) {
 					menor = leituras[i];
@@ -28,38 +35,31 @@ public class Reservatorio {
 				if (leituras[i] > maior) {
 					maior = leituras[i];
 				}
-			}			
-			/*
-			System.out.println("Leituras: "
-					+ "L1: " + leituras[0] + " - " 
-					+ "L2: " + leituras[1] + " - " 
-					+ "L3: " + leituras[2] + " - "
-					+ "L4: " + leituras[3] + " - "
-					+ "L5: " + leituras[4] + " - "
-			);
-			*/			
+			}					
 			
-			int somatorio = 0;
-			for (int leitura : leituras) {
+			float somatorio = 0;
+			for (float leitura : leituras) {
 				somatorio = somatorio + leitura;
 			}
-			this.medidaAguaReservatorioCm = (somatorio - maior - menor) / 3;
-						
-			// Calcula o percentual
-			percentual = 100 - (3*(this.medidaAguaReservatorioCm - 15));
-						
+			medidaAguaReservatorioCm = (somatorio - maior - menor) / 3;						
 			
 		} catch (Exception e1) {
 			System.out.println("Exceção na classe Reservatorio.");
             System.err.println( e1 );
 		}
 		
+		
 		try {
-            Thread.sleep( DistanceMonitor.getWaitDurationInMillis() );
+            Thread.sleep( SensorDistanciaHCSR04.getWaitDurationInMillis() );
         } catch (InterruptedException ex) {
             System.err.println( "Interrupt during trigger" );
         }		
 		
-		return Math.round(percentual);		
+		
+		// Calcula o percentual
+		//percentualAguaReservatorio = 100 - (3*(medidaAguaReservatorioCm - 15));			
+		percentualAguaReservatorio = ((48 - medidaAguaReservatorioCm) / 33) * 100;
+		
+		return Math.round(percentualAguaReservatorio);		
 	}
 }

@@ -10,29 +10,29 @@
     <h:form>
         <p:growl id="msgs" showDetail="true" /> 
  		
-        <p:dashboard id="board" model="#{principalBean.dashboardModelo}">
-            <p:ajax event="reorder" listener="#{principalBean.handleReorder}" update="msgs" />
+        <p:dashboard id="board" model="#{homeManagedBean.dashboardModelo}">
+            <p:ajax event="reorder" listener="#{homeManagedBean.handleReorder}" update="msgs" />
  
  			<p:panel id="reservatorio" header="Reservatório">
                 <h:outputText value="Gráfico do Reservatório" />                
    				<p:growl id="growl" showDetail="true" /> 
-    			<p:poll interval="10" update="grafico-reservatorio" listener="#{principalBean.atualizaVolumeAguaNoGrafico}"/>
-        		<p:chart id="grafico-reservatorio" type="bar" model="#{principalBean.barra}" style="width:200px;height:300px">
-            		<p:ajax event="itemSelect" listener="#{principalBean.itemSelect}" update="growl" />
+    			<p:poll interval="10" update="grafico-reservatorio" listener="#{homeManagedBean.atualizaVolumeAguaNoGrafico}"/>
+        		<p:chart id="grafico-reservatorio" type="bar" model="#{homeManagedBean.barra}" style="width:200px;height:300px">
+            		<p:ajax event="itemSelect" listener="#{homeManagedBean.itemSelect}" update="growl" />
         		</p:chart>				
             </p:panel>
             
             <p:panel id="estadoSistema" header="Estado do Sistema">
-            	<p:poll interval="3" update="estado-bomba-text" listener="#{principalBean.verificaEstadoBomba}"/>
-            	<p:poll interval="5" update="estado-valvula-text" listener="#{principalBean.verificaEstadoValvula}"/>
-            	<h:outputText value="Bomba: #{principalBean.estadoBomba}" id="estado-bomba-text"/><br />
-            	<h:outputText value="Valvula: #{principalBean.estadoValvula}" id="estado-valvula-text"/>
+            	<p:poll interval="3" update="estado-bomba-text" listener="#{homeManagedBean.verificaEstadoBomba}"/>
+            	<p:poll interval="5" update="estado-valvula-text" listener="#{homeManagedBean.verificaEstadoValvula}"/>
+            	<h:outputText value="Bomba: #{homeManagedBean.estadoBomba}" id="estado-bomba-text"/><br />
+            	<h:outputText value="Valvula: #{homeManagedBean.estadoValvula}" id="estado-valvula-text"/>
             </p:panel>
  
             <p:panel id="gerenciaBomba" header="Irrigação">
             	<h:form id="gerenciaIrrigacao">
-            		<h:commandButton action="#{principalBean.ligaBomba}" value="Acionar" /><br />
-            		<h:commandButton action="#{principalBean.desligaBomba}" value="Parar" />
+            		<h:commandButton action="#{homeManagedBean.ligaBomba}" value="Acionar" /><br />
+            		<h:commandButton action="#{homeManagedBean.desligaBomba}" value="Parar" />
             	</h:form>
             </p:panel>                        
         </p:dashboard>
