@@ -58,8 +58,8 @@ public class PrincipalBean implements Serializable {
 	     DashboardColumn coluna3 = new DefaultDashboardColumn();
 	     		 
 	     coluna1.addWidget("reservatorio");
-	     coluna2.addWidget("estadobomba");
-	     coluna3.addWidget("estadovalula");	     
+	     coluna2.addWidget("estadoSistema");
+	     coluna3.addWidget("gerenciaBomba");	     
 	     
 	     this.dashboardModelo.addColumn(coluna1);
 	     this.dashboardModelo.addColumn(coluna2);

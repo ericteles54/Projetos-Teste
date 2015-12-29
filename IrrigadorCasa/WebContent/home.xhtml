@@ -21,16 +21,20 @@
             		<p:ajax event="itemSelect" listener="#{principalBean.itemSelect}" update="growl" />
         		</p:chart>				
             </p:panel>
- 
-            <p:panel id="estadobomba" header="Estado da Bomba">
-            	<p:poll interval="5" update="estado-bomba-text" listener="#{principalBean.verificaEstadoBomba}"/>
-                <h:outputText value="#{principalBean.estadoBomba}" id="estado-bomba-text"/>
+            
+            <p:panel id="estadoSistema" header="Estado do Sistema">
+            	<p:poll interval="3" update="estado-bomba-text" listener="#{principalBean.verificaEstadoBomba}"/>
+            	<p:poll interval="5" update="estado-valvula-text" listener="#{principalBean.verificaEstadoValvula}"/>
+            	<h:outputText value="Bomba: #{principalBean.estadoBomba}" id="estado-bomba-text"/><br />
+            	<h:outputText value="Valvula: #{principalBean.estadoValvula}" id="estado-valvula-text"/>
             </p:panel>
  
-            <p:panel id="estadovalula" header="Estado da Valvula">
-            	<p:poll interval="5" update="estado-valvula-text" listener="#{principalBean.verificaEstadoValvula}"/>
-                <h:outputText value="#{principalBean.estadoValvula}" id="estado-valvula-text"/>
-            </p:panel>              
+            <p:panel id="gerenciaBomba" header="Irrigação">
+            	<h:form id="gerenciaIrrigacao">
+            		<h:commandButton action="#{principalBean.ligaBomba}" value="Acionar" /><br />
+            		<h:commandButton action="#{principalBean.desligaBomba}" value="Parar" />
+            	</h:form>
+            </p:panel>                        
         </p:dashboard>
         
         <div style="clear:both" />

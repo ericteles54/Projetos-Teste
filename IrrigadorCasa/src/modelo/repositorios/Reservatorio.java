@@ -11,75 +11,43 @@ public class Reservatorio {
 		long percentual = 0;
 		
 		try {
-			//this.aguaNoReservatorio = Math.round(this.monitor.measureDistance());
-			//System.out.println("Leitura do sensor de distancia: " + this.aguaNoReservatorio);
 			int menor = Integer.MAX_VALUE;
 			int maior = 0;
 						
-			System.out.println("Iniciando medicoes: ");
 			
-			int l1 = Math.round(this.monitor.measureDistance());
-			if (l1 < menor) {  
-	                menor = l1;  
-	        }
-			if (l1 > maior) {  
-	                maior = l1;  
-	        }  
-			Thread.sleep(1000);
-			
-			int l2 = Math.round(this.monitor.measureDistance());
-			if (l2 < menor) {  
-                menor = l2;  
-			}
-			if (l2 > maior) {  
-				maior = l2;  
-			}
-			Thread.sleep(1000);			
-			
-			int l3 = Math.round(this.monitor.measureDistance());
-			if (l3 < menor) {  
-                menor = l3;  
-			}
-			if (l3 > maior) {  
-                maior = l3;  
-			}  
-			Thread.sleep(1000);
-			
-			int l4 = Math.round(this.monitor.measureDistance());
-			if (l4 < menor) {  
-                menor = l4;  
-			}
-			if (l4 > maior) {  
-                maior = l4;  
-			}  
-			Thread.sleep(1000);
-			
-			int l5 = Math.round(this.monitor.measureDistance());
-			if (l5 < menor) {  
-                menor = l5;  
-			}
-			if (l5 > maior) {  
-                maior = l5;  
-			}  
-			
-			System.out.println("L1: " + l1 + " - " 
-					+ "L2: " + l2 + " - " 
-					+ "L3: " + l3 + " - "
-					+ "L4: " + l4 + " - "
-					+ "L5: " + l5 + " - "
+			int[] leituras = new int[5];
+			for(int i = 0; i < 5; i++) {
+				// Aguarda 2 segundos antes de fazer a leitura
+				Thread.sleep(2000);
+				
+				leituras[i] = Math.round(this.monitor.measureDistance());
+				
+				if (leituras[i] < menor) {
+					menor = leituras[i];
+				}
+				if (leituras[i] > maior) {
+					maior = leituras[i];
+				}
+			}			
+			/*
+			System.out.println("Leituras: "
+					+ "L1: " + leituras[0] + " - " 
+					+ "L2: " + leituras[1] + " - " 
+					+ "L3: " + leituras[2] + " - "
+					+ "L4: " + leituras[3] + " - "
+					+ "L5: " + leituras[4] + " - "
 			);
+			*/			
 			
-			this.medidaAguaReservatorioCm = (l1 + l2 + l3 + l4 + l5 - maior - menor) / 3;
-			System.out.println("media: " + this.medidaAguaReservatorioCm);
-			
-			
+			int somatorio = 0;
+			for (int leitura : leituras) {
+				somatorio = somatorio + leitura;
+			}
+			this.medidaAguaReservatorioCm = (somatorio - maior - menor) / 3;
+						
 			// Calcula o percentual
 			percentual = 100 - (3*(this.medidaAguaReservatorioCm - 15));
-			
-			
-			
-			System.out.println("Finalizando medicoes");
-			
+						
 			
 		} catch (Exception e1) {
 			System.out.println("Exceção na classe Reservatorio.");
